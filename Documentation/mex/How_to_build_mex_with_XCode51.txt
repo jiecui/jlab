@@ -1,0 +1,33 @@
+How to build and debug MatLab MEX file (cpp file for MatLab R2013a) with Xcode5.1
+reference: 
+(1) http://www.mathworks.com/matlabcentral/answers/97509-how-do-i-debug-my-mex-files-using-xcode-4.3+-on-os-x
+(2) http://www.mathworks.com/help/matlab/matlab_external/debugging-on-mac-platforms.html
+
+1. Find the template zip file: MexXcode51Template.zip. Unzip and copy the three files to the following directory: /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/Project Templates/Mac/MathWorks/MEX.xctemplate
+
+2. Open Xcode and select "File --> New --> Project..."
+
+3. On the left column, choose the category MathWorks and select type MEX-Library.
+
+4. Name the "Product Name" after your MEX-function (e.g. timestable, the example located in $MATLAB/extern/examples/refbook).
+
+5. Enter the name of your MATLAB application as it appears in finder, e.g. MATLAB_R2012b.
+
+6. Add your MEX-function file(s) into the project hierarchy (e.g., drag and drop), making sure to check 'Copy items into destination group's folder' so that the file(s) will be copied into your project directory and also make sure the target checkbox is checked.
+
+7. check mex.xcconfig. Make sure that Build Options is GCC_VERSION = com.apple.compilers.llvm.clang.1_0
+
+8. Go to Build Settings. Make sure that you are in the "All" view (instead of "Basic"). In Build Options, check Compiler for C/C++/Objective-C and make sure it is Apple LLVM 5.1. In Apple LLVM 5.1 - Language - C++, check C++ Language Dialect and use C++11 [-std=c++11] (instead of Compiler Default).
+
+9. In Apple LLVM 5.1 - Code Generation, find Optimization Level and choose None for debugging. If the Optimization Level is set to anything else than None, it is not guaranteed that your code is executed in the order that it has been written which would make efficient debugging virtually impossible.
+
+10. At this point, everything has been setup for you, so hit Cmd-B to build your MEX-function and verify that the build is successful. Now you can use the MEX-function from within MATLAB.
+
+11. To debug from within Xcode, launch MATLAB as you normally would and attach to the MATLAB process from within Xcode (Debug --> Attach to Process).
+
+12. In MATLAB, cd to the place where the Xcode product was built, i.e.
+
+cd $(YOUR_XCODE_PROJECT_DIR)/build/Debug
+(the product is placed in the subdirectory build/$(CONFIGURATION) of the project root).
+
+13. Add a breakpoint in your MEX-file and then run the MEX-function from the MATLAB prompt. The control should stop at the breakpoint in Xcode.

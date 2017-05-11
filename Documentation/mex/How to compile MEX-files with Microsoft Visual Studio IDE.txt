@@ -1,0 +1,28 @@
+	Compiling MEX-Files with the Microsoft Visual C++ IDE
+
+Note   This section provides information on how to compile source MEX-files in the Microsoft Visual C++ IDE. It is not totally inclusive. This section assumes that you know how to use the IDE. If you need more information on using the Microsoft Visual C++ IDE, refer to the corresponding Microsoft documentation.
+
+To build MEX-files with the Microsoft Visual C++ integrated development environment (press Alt-F7 for project properties in Microsoft Visual C++ 2010 IDE):
+
+   1. Create a project and insert your MEX source files.
+
+   2. Create a .def file to export the MEX entry point. On the Project menu, click Add New Item and select Module-Definition File (.def). For example:
+
+      LIBRARY "myfile.mexw32"    ("myfile.mexw64)
+      EXPORTS mexFunction        <-- for a C MEX-file
+         or
+      EXPORTS _MEXFUNCTION       <-- for a Fortran MEX-file
+
+   3. On the Project menu, click Properties for the project to open the property pages (Alt-F7).
+
+   4. Under C/C++ General properties, add the MATLAB include folder, matlab\extern\include, as an additional include folder.
+
+   5. Under C/C++ Preprocessor properties, add MATLAB_MEX_FILE as a preprocessor definition.
+
+   6. Under Configuration Properties --> General properties, change the output file extension (Traget Extension) to .mexw32 if you are building for a 32¨Cbit platform or .mexw64 if you are building for a 64¨Cbit platform.
+
+   7. Locate (add the directories in Linker --> General --> Additional Library Directories) the .lib files for the compiler you are using under matlabroot\extern\lib\win32\microsoft or matlabroot\extern\lib\win64\microsoft. Under Linker Input properties, add libmx.lib, libmex.lib, and libmat.lib as additional dependencies.
+
+   8. Under Linker Input properties, add the module definition (.def) file you created.
+
+   9. Under Linker Debugging properties, if you intend to debug the MEX-file using the IDE, specify that the build should generate debugging information. For more information about debugging, see Debugging on the Microsoft Windows Platforms.

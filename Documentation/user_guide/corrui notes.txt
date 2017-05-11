@@ -1,0 +1,3 @@
+* structdlg
+* corrui_variable_db_editor
+
