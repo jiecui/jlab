@@ -30,10 +30,9 @@ fw.writeToFile('% write your code here')
 
 % copywrite infomation
 fw.writeToFile('')
-fw.writeToFile(sprintf('%% Copyright %s '))
-fw.writeToFile(sprintf('%% Copyright %s Richard J. Cui. Created: %s',...
-    datestr(now, 'yyyy'), datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
-fw.writeToFile(sprintf('%% $Revision: 0.1 $  $Date: %s $',...
+fw.writeToFile(sprintf('%%%% Copyright %s Richard J. Cui', datestr(now, 'yyyy')))
+fw.writeToFile(sprintf('%% Created: %s;', datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
+fw.writeToFile(sprintf('%% Revision: 0.1  Date: %s',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
 fw.writeToFile('% 3236 E Chandler Blvd Unit 2036')
