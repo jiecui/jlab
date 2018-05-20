@@ -27,7 +27,7 @@ function varargout = corrui(varargin)
 % Edit the above text to modify the response to help corrui
 
 % Last Modified by GUIDE v2.5 10-Aug-2016 10:02:54
-% Last modified by Richard J. Cui on Sat 05/19/2018  7:20:01.077 PM
+% Last modified by Richard J. Cui on Sun 05/20/2018 11:47:13.091 AM
 % e-mail: richard.jie.cui@gmail.com
 
 % Begin initialization code - DO NOT EDIT
@@ -262,14 +262,17 @@ handles.Enums.experiment_tags           = {};
 % searchs inside the default folder (jLab/Corrui/Experiments) and
 % additional folders for class names (tag).  The folder name is the tag
 % name.
-dir_df = [fileparts(mfilename('fullpath')) [filesep 'Experiments' filesep '*']];
+
+% default directory
+dir_df = [fileparts(mfilename('fullpath')) [filesep 'Experiments']];
 d_df = dir(dir_df);
+% additional directories
 dir_add = jlab_exp;
 if ~isempty(dir_add)
     d_add = struct([]);
     for k = 1:numel(dir_add)
         dir_k = dir_add{k};
-        d_k = dir(sprintf('%s%s*', dir_k, filesep));
+        d_k = dir(dir_k);
         d_add = cat(1, d_add, d_k);
     end % for
     d = cat(1, d_df, d_add);
