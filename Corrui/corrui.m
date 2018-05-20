@@ -27,7 +27,7 @@ function varargout = corrui(varargin)
 % Edit the above text to modify the response to help corrui
 
 % Last Modified by GUIDE v2.5 10-Aug-2016 10:02:54
-% Last modified by Richard J. Cui on Thu 09/08/2016  2:46:05.680 PM
+% Last modified by Richard J. Cui on Sat 05/19/2018  7:20:01.077 PM
 % e-mail: richard.jie.cui@gmail.com
 
 % Begin initialization code - DO NOT EDIT
@@ -250,24 +250,37 @@ function handles = setuptags(handles)
 % enums is a struct holding the string values of the system-defined tags
 % TAGS
 handles.Enums = [];
-
-% -- Experiment tags --
-% searchs inside the folder Experiments for class names
-% d = dir([fileparts(mfilename('fullpath')) '\Experiments\*']);
-d = dir([fileparts(mfilename('fullpath')) [filesep 'Experiments' filesep '*']]);
-handles.Enums.experiment_tags = {};
-for i = 1:length(d)
-    if ( isempty(strfind( d(i).name, '.')) && isempty(strfind( d(i).name, 'svn')) )
-        handles.Enums.experiment_tags{end+1} = d(i).name;
-    end
-end
-
 handles.Enums.Internal_Text_List        = {};
 handles.Enums.Internal_Text_List_Avg    = {};
 handles.Enums.Internal_Tag_List         = {};
 handles.Enums.Internal_Tag_List_Avg     = {};
 handles.Enums.Experiment_List           = {};
 handles.Enums.Experiment_List_Avg       = {};
+handles.Enums.experiment_tags           = {};
+
+% -- Experiment tags -- 
+% searchs inside the default folder (jLab/Corrui/Experiments) and
+% additional folders for class names (tag).  The folder name is the tag
+% name.
+dir_df = [fileparts(mfilename('fullpath')) [filesep 'Experiments' filesep '*']];
+d_df = dir(dir_df);
+dir_add = jlab_exp;
+if ~isempty(dir_add)
+    d_add = struct([]);
+    for k = 1:numel(dir_add)
+        dir_k = dir_add{k};
+        d_k = dir(sprintf('%s%s*', dir_k, filesep));
+        d_add = cat(1, d_add, d_k);
+    end % for
+    d = cat(1, d_df, d_add);
+else
+    d = d_df;
+end % if
+for i = 1:length(d)
+    if isempty(strfind( d(i).name, '.')) && d(i).isdir == true
+        handles.Enums.experiment_tags{end+1} = d(i).name;
+    end
+end
 
 for i=1:length(handles.Enums.experiment_tags)
     tag     = char(handles.Enums.experiment_tags{i});
