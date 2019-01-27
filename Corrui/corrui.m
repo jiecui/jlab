@@ -27,7 +27,7 @@ function varargout = corrui(varargin)
 % Edit the above text to modify the response to help corrui
 
 % Last Modified by GUIDE v2.5 10-Aug-2016 10:02:54
-% Last modified by Richard J. Cui on Sun 05/20/2018 11:47:13.091 AM
+% Last modified by Richard J. Cui on Sun 01/27/2019  4:02:57.248 PM
 % e-mail: richard.jie.cui@gmail.com
 
 % Begin initialization code - DO NOT EDIT
@@ -112,7 +112,7 @@ handles.MainVariables = CorrGui.get_main_variables( handles.variable_db );
 function hObject = setup_corr_fig(hObject, handles)
 % set name of the GUI of Corrui
 if strcmpi(hObject.Tag, 'CorruiGUI') == true
-    hObject.Name = 'jLab - Integrated Engironment of Signal Processing';
+    hObject.Name = 'jLab - Integrated Environment of Signal Processing';
 end % if
 
 % set scrolling in variable table

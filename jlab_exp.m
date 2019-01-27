@@ -26,8 +26,8 @@ function add_dir = jlab_exp()
 %
 % Email: richard.cui@utoronto.ca
 
-add_dir = {'/Users/jiecui/Documents/Jie/Projects/other_projects/gfs_msacc/jlab_exp', ...
-    '/Users/jiecui/Documents/Jie/Projects/PostDocProjects/barrow/mSaccade and contrast perception/jlab_exp'};
+add_dir{1} = '/Users/Jie/Documents/Richard/Projects/other_projects/gfs_msacc/jlab_exp';
+add_dir{2} = '/Users/Jie/Documents/Richard/Projects/PostDocProjects/barrow/mSaccade and contrast perception/jlab_exp';
 
 end % function jlab_exp
 
