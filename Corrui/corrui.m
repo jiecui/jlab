@@ -370,7 +370,7 @@ try
     
 catch ex
     ex.getReport
-    disp('corrui: Error loading sessions.Probably some session was saved with a bad name (spaces or underscores)');
+    disp('corrui: Error loading sessions. Probably some session was saved with a bad name (spaces or underscores)');
 end
 
 % mark as the selected sessions
