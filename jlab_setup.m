@@ -9,11 +9,11 @@ function jlab_setup()
 % 
 % See also .
 
-% Copyright 2011-2016 Richard J. Cui. Created: Thu 11/08/2012  8:49:00.581 AM
-% $Revision: 1.3 $  $Date: Sun 12/11/2016  4:50:51.702 PM $
+% Copyright 2011-2019 Richard J. Cui. Created: Thu 11/08/2012  8:49:00.581 AM
+% $Revision: 1.4 $  $Date: Sun 01/27/2019  3:37:57.232 PM $
 %
-% 3236 E Chandler Blvd Unit 2036
-% Phoenix, AZ 85048, USA
+% 1026 Rocky Creek Dr NE
+% Rochester, MN 55906, USA
 %
 % Email: richard.jie.cui@gmail.com
 
@@ -38,13 +38,12 @@ if ( ~isempty(paths) )
     %     end % for
     disppaths(paths)
     response = input('Do you want to continue? ([y]/n)','s');
-    if ( lower(response) ~= 'y')
-        return
-    end
-    for p=paths
-        s=char(p);
-        rmpath(s);
-    end
+    if isempty(response) || lower(response) == 'y'
+        for p=paths
+            s=char(p);
+            rmpath(s);
+        end % for
+    end % if
 end
 
 % =========================================================================
@@ -52,18 +51,16 @@ end
 % =========================================================================
 new_jlab_folder = fileparts(mfilename('fullpath'));
 pp = [ext_add_path, pathsep, genpath(new_jlab_folder)];
+% remove hidden directories of version control from the path
+exps_rm = sprintf('[^%s]*%s\\.[(git)(svn)][^%s]*%s?', pathsep, filesep, pathsep, pathsep);   % '[^;]*\\(.svn)[^;]*;?';
+pp = regexprep(pp, exps_rm,'');
+
 paths = regexpi(pp, exps_path, 'match');
-% disp(paths')
 disppaths(paths)
 response = input('These new folders will be added to the path, continue? ([y]/n)','s');
-if ( lower(response) ~= 'y')
-    savepath
-    return
+if isempty(response) || lower(response) == 'y'
+    addpath(pp);
 end
-exps_add = sprintf('[^%s]*\\(.svn)[^%s]*%s?', pathsep, pathsep, pathsep);   % '[^;]*\\(.svn)[^;]*;?';
-pp = regexprep(pp, exps_add,'');
-addpath(pp);
-
 savepath
 
 end % funciton
