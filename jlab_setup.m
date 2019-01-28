@@ -10,7 +10,7 @@ function jlab_setup()
 % See also .
 
 % Copyright 2011-2019 Richard J. Cui. Created: Thu 11/08/2012  8:49:00.581 AM
-% $Revision: 1.4 $  $Date: Sun 01/27/2019  3:37:57.232 PM $
+% $Revision: 1.5 $  $Date: Mon 01/28/2019  3:57:55.856 PM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -31,18 +31,20 @@ paths = regexpi(path, exps_path, 'match');
 % end
 
 if ( ~isempty(paths) )
-    
-    disp('These folders will be removed from the path:')
-    %     for k = 1:length(paths)
-    %         fprintf('%s\n', paths{k});
-    %     end % for
     disppaths(paths)
-    response = input('Do you want to continue? ([y]/n)','s');
+    response = input('These folders will be removed from the path, continue? ([y]/n)','s');
     if isempty(response) || lower(response) == 'y'
-        for p=paths
-            s=char(p);
-            rmpath(s);
-        end % for
+        %         num_path = numel(paths);
+        %         wh = waitbar(0, 'Please wait...');
+        %         for k = 1:num_path
+        %             waitbar(k/num_path, wh)
+        %             p=paths{k};
+        %             s=char(p);
+        %             rmpath(s);
+        %         end % for
+        %         close(wh)
+        pp = cell2mat(paths);
+        rmpath(pp)
     end % if
 end
 
@@ -52,7 +54,7 @@ end
 new_jlab_folder = fileparts(mfilename('fullpath'));
 pp = [ext_add_path, pathsep, genpath(new_jlab_folder)];
 % remove hidden directories of version control from the path
-exps_rm = sprintf('[^%s]*%s\\.[(git)(svn)][^%s]*%s?', pathsep, filesep, pathsep, pathsep);   % '[^;]*\\(.svn)[^;]*;?';
+exps_rm = sprintf('[^%s]*\\.(git|svn)[^%s]*%s?', pathsep, pathsep, pathsep);   % '[^;]*\\(.svn)[^;]*;?';
 pp = regexprep(pp, exps_rm,'');
 
 paths = regexpi(pp, exps_path, 'match');
