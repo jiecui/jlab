@@ -22,7 +22,9 @@ function jlab_setup()
 % =========================================================================
 ext_tb = external_toolbox;
 [ext_rem_path, ext_add_path] = genExtPath(ext_tb); % get paths of external toolboxes
-exps_path = sprintf('[^%s]*(jLab|jlab|%s)[^%s]*%s', ...
+% get paths of jlab_exp folders
+jlab_exp_path = genJlabexpPath(jlab_exp);
+exps_path = sprintf('[^%s]*(jLab|jlab|jlab_exp|%s)[^%s]*%s', ...
     pathsep, ext_rem_path, pathsep, pathsep);
 paths = regexpi(path, exps_path, 'match');
 
@@ -52,7 +54,7 @@ end
 % add paths for jLab toolbox
 % =========================================================================
 new_jlab_folder = fileparts(mfilename('fullpath'));
-pp = [ext_add_path, pathsep, genpath(new_jlab_folder)];
+pp = [jlab_exp_path, pathsep, ext_add_path, pathsep, genpath(new_jlab_folder)];
 % remove hidden directories of version control from the path
 exps_rm = sprintf('[^%s]*\\.(git|svn)[^%s]*%s?', pathsep, pathsep, pathsep);   % '[^;]*\\(.svn)[^;]*;?';
 pp = regexprep(pp, exps_rm,'');
@@ -70,8 +72,35 @@ end % funciton
 % =========================================================================
 % subroutines
 % =========================================================================
+function add_path = genJlabexpPath(jlab_exp)
+% Get paths of external jlab_exp folders
+% 
+% Assume that jlab_exp are absolute directories
+
+add_path = [];
+N = length(jlab_exp);
+for k = 1:N    
+    s_k = jlab_exp{k};
+    add_path = strcat(add_path, genpath(s_k));
+    if k ~= N
+        add_path = strcat(add_path, pathsep);
+    end % if
+end % for
+
+end % funciton
+
 function [rem_path, add_path] = genExtPath(ext_toolbox)
-% get paths of external toolboxes
+% Get paths of external toolboxes
+% 
+% It is assumed that the folders of external toolboxes are just one level
+% above jLab folder.
+% 
+% Inputs:
+%   ext_toolbox     - cell string of folders of toolboxes
+% 
+% Outputs:
+%   rem_path        - string vector for regexp process
+%   add_path        - string vector for adding path
 
 cur_folder = cd(sprintf('..%s', filesep));
 upper_folder = pwd;

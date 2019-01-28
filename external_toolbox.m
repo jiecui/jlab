@@ -9,6 +9,10 @@ function ext_tb = external_toolbox()
 % Output(s):
 %
 % Example:
+% 
+% Noate:
+%   It is assumed that the folders of external toolboxes are just one level
+% above jLab folder.
 %
 % See also .
 
@@ -20,9 +24,10 @@ function ext_tb = external_toolbox()
 %
 % Email: richard.jie.cui@gmail.com
 
-ext_tb{1} = 'time_frequency_analysis';
-ext_tb{2} = 'neural_signals_analysis';
-ext_tb{3} = 'eye_movement_analysis';
+ext_tb = {};
+ext_tb = cat(1, ext_tb, 'time_frequency_analysis');
+ext_tb = cat(1, ext_tb, 'neural_signals_analysis');
+ext_tb = cat(1, ext_tb, 'eye_movement_analysis');
 
 end % function external_toolbox
 
