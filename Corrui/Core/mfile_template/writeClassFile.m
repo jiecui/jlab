@@ -2,11 +2,11 @@ function writeClassFile(classname,superclass)
 % WRITECLASSFILE uses a Filewriter object to write a class template
 
 % Adapted from Matlab
-% Copyright 2010-2016 Richard J. Cui. Created: Sun 11/16/2014 10:45:20.718 AM
-% $Revision: 0.5 $  $Date: Thu 09/29/2016 10:25:09.179 PM $
+% Copyright 2014-2019 Richard J. Cui. Created: Sun 11/16/2014 10:45:20.718 AM
+% $Revision: 0.6 $  $Date: Mon 12/30/2019 10:10:39.249 PM $
 %
-% 3236 E Chandler Blvd Unit 2036
-% Phoenix, AZ 85048, USA
+% 1026 Rocky Creek Dr NE
+% Rochester, MN 55906, USA
 %
 % Email: richard.cui@utoronto.ca
 
@@ -43,8 +43,8 @@ fw.writeToFile(sprintf('\t%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('\t%% $Revision: 0.1 $  $Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile(sprintf('\t%%'))
-fw.writeToFile(sprintf('\t%% 3236 E Chandler Blvd Unit 2036'))
-fw.writeToFile(sprintf('\t%% Phoenix, AZ 85048, USA'))
+fw.writeToFile(sprintf('\t%% 1026 Rocky Creek Dr NE'))
+fw.writeToFile(sprintf('\t%% Rochester, MN 55906, USA'))
 fw.writeToFile(sprintf('\t%%'))
 fw.writeToFile(sprintf('\t%% Email: richard.cui@utoronto.ca'))
 fw.writeToFile('')

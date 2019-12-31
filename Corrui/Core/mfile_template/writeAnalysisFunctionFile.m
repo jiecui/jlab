@@ -4,11 +4,10 @@ function writeAnalysisFunctionFile(funname)
 
 % Adapted from Matlab
 % Copyright 2015-2016 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 0.5 $  $Date: Thu 09/29/2016 10:25:09.179 PM $
+% $Revision: 0.6 $  $Date:  Mon 12/30/2019 10:10:39.249 PM $
 %
-% 3236 E Chandler Blvd Unit 2036
-% Phoenix, AZ 85048
-% USA
+% 1026 Rocky Creek Dr NE
+% Rochester, MN 55906, USA
 %
 % Email: richard.cui@utoronto.ca
 
@@ -59,8 +58,8 @@ fw.writeToFile(sprintf('%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('%% $ Revision: 0.1 $  $ Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% 3236 E Chandler Blvd Unit 2036')
-fw.writeToFile('% Phoenix, AZ 85048, USA')
+fw.writeToFile('% 1026 Rocky Creek Dr NE')
+fw.writeToFile('% Rochester, MN 55906, USA')
 fw.writeToFile('%')
 fw.writeToFile('% Email: richard.cui@utoronto.ca')
 
