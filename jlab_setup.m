@@ -10,7 +10,7 @@ function jlab_setup()
 % See also .
 
 % Copyright 2011-2019 Richard J. Cui. Created: Thu 11/08/2012  8:49:00.581 AM
-% $Revision: 1.5 $  $Date: Mon 01/28/2019  3:57:55.856 PM $
+% $Revision: 1.6 $  $Date: Thu 01/02/2020 10:25:57.762 PM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -18,40 +18,45 @@ function jlab_setup()
 % Email: richard.jie.cui@gmail.com
 
 % =========================================================================
-% remove current jLab and toolboxes from path
+% remove current jLab, toolboxes and exp from path
 % =========================================================================
+% get paths of jlab toolbox folders
+% ---------------------------------
 ext_tb = external_toolbox;
 [ext_rem_path, ext_add_path] = genExtPath(ext_tb); % get paths of external toolboxes
+
 % get paths of jlab_exp folders
+% -----------------------------
 jlab_exp_path = genJlabexpPath(jlab_exp);
-exps_path = sprintf('[^%s]*(jLab|jlab|jlab_exp|%s)[^%s]*%s', ...
-    pathsep, ext_rem_path, pathsep, pathsep);
+
+% remove pathes
+% -------------
+if isempty(ext_rem_path) && isempty(jlab_exp_path)
+    exps_path = sprintf('[^%s]*(jLab|jlab)[^%s]*%s', ...
+        pathsep, pathsep, pathsep);
+elseif ~isempty(ext_rem_path) && isempty(jlab_exp_path)
+    exps_path = sprintf('[^%s]*(jLab|jlab|%s)[^%s]*%s', ...
+        pathsep, ext_rem_path, pathsep, pathsep);
+elseif isempty(ext_rem_path) && ~isempty(jlab_exp_path)
+    exps_path = sprintf('[^%s]*(jLab|jlab|%s)[^%s]*%s', ...
+        pathsep, jlab_exp_path, pathsep, pathsep);
+elseif ~isempty(ext_rem_path) && ~isempty(jlab_exp_path)
+    exps_path = sprintf('[^%s]*(jLab|jlab|%s|%s)[^%s]*%s', ...
+        pathsep, ext_rem_path, jlab_exp_path, pathsep, pathsep);
+end % if
 paths = regexpi(path, exps_path, 'match');
 
-% if ( length( paths) == 0 )
-%     paths=regexp(path,['[^;]*corrui[^;]*;'],'match');
-% end
-
-if ( ~isempty(paths) )
+if ~isempty(paths)
     disppaths(paths)
     response = input('These folders will be removed from the path, continue? ([y]/n)','s');
     if isempty(response) || lower(response) == 'y'
-        %         num_path = numel(paths);
-        %         wh = waitbar(0, 'Please wait...');
-        %         for k = 1:num_path
-        %             waitbar(k/num_path, wh)
-        %             p=paths{k};
-        %             s=char(p);
-        %             rmpath(s);
-        %         end % for
-        %         close(wh)
         pp = cell2mat(paths);
         rmpath(pp)
     end % if
 end
 
 % =========================================================================
-% add paths for jLab toolbox
+% add paths for jLab, toolbox and exp
 % =========================================================================
 new_jlab_folder = fileparts(mfilename('fullpath'));
 pp = [jlab_exp_path, pathsep, ext_add_path, pathsep, genpath(new_jlab_folder)];
