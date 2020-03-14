@@ -19,7 +19,7 @@ function add_dir = jlab_exp()
 % See also .
 
 % Copyright 2018-2019 Richard J. Cui. Created: Sat 05/19/2018  9:01:31.718 PM
-% $Revision: 0.3 $  $Date: Thu 01/02/2020  3:34:37.411 PM $
+% $Revision: 0.4 $  $Date: Sat 03/14/2020 12:11:55.463 AM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -27,8 +27,20 @@ function add_dir = jlab_exp()
 % Email: richard.cui@utoronto.ca
 
 add_dir = {};
-% add_dir = cat(1, add_dir, '/Users/Jie/Documents/Richard/Projects/other_projects/gfs_msacc/Analysis/codes/jlab_exp');
-% add_dir = cat(1, add_dir, '/Users/Jie/Documents/Richard/Projects/PostDocProjects/barrow/mSaccade and contrast perception/jlab_exp');
+
+% gfs_msacc
+% ---------
+% need eye_movement_analysis external toolbox
+add_dir = cat(1, add_dir, fullfile(getuserdir, ['Documents/Richard',...
+    '/Projects/other_projects/gfs_msacc/Analysis/codes/jlab_exp']));
+
+% mSaccade and contrast perception
+% --------------------------------
+% need eye_movement_analysis external toolbox
+
+% add_dir = cat(1, add_dir, fullfile(getuserdir, ['Documents/Richard',...
+%     '/Projects/PostDocProjects/barrow/mSaccade and contrast perception',...
+%     '/jlab_exp']));
 
 end % function jlab_exp
 

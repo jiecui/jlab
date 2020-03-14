@@ -9,8 +9,8 @@ function jlab_setup()
 % 
 % See also .
 
-% Copyright 2011-2019 Richard J. Cui. Created: Thu 11/08/2012  8:49:00.581 AM
-% $Revision: 1.6 $  $Date: Thu 01/02/2020 10:25:57.762 PM $
+% Copyright 2012-2020 Richard J. Cui. Created: Thu 11/08/2012  8:49:00.581 AM
+% $Revision: 1.7 $  $Date: Sat 03/14/2020 12:19:41.747 AM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -20,6 +20,10 @@ function jlab_setup()
 % =========================================================================
 % remove current jLab, toolboxes and exp from path
 % =========================================================================
+restoredefaultpath
+new_jlab_folder = fileparts(mfilename('fullpath'));
+addpath(genpath(new_jlab_folder));
+
 % get paths of jlab toolbox folders
 % ---------------------------------
 ext_tb = external_toolbox;
@@ -70,7 +74,7 @@ response = input('These new folders will be added to the path, continue? ([y]/n)
 if isempty(response) || lower(response) == 'y'
     addpath(pp);
 end
-savepath
+% savepath
 
 end % funciton
 

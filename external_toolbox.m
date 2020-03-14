@@ -27,7 +27,7 @@ function ext_tb = external_toolbox()
 ext_tb = {};
 % ext_tb = cat(1, ext_tb, 'time_frequency_analysis');
 % ext_tb = cat(1, ext_tb, 'neural_signals_analysis');
-% ext_tb = cat(1, ext_tb, 'eye_movement_analysis');
+ext_tb = cat(1, ext_tb, 'eye_movement_analysis');
 
 end % function external_toolbox
 

@@ -27,7 +27,7 @@ function varargout = corrui(varargin)
 % Edit the above text to modify the response to help corrui
 
 % Last Modified by GUIDE v2.5 10-Aug-2016 10:02:54
-% Last modified by Richard J. Cui on Sun 01/27/2019  4:02:57.248 PM
+% Last modified by Richard J. Cui on Sat 03/14/2020 12:45:10.998 AM
 % e-mail: richard.jie.cui@gmail.com
 
 % Begin initialization code - DO NOT EDIT
@@ -300,7 +300,9 @@ for i=1:length(handles.Enums.experiment_tags)
     catch ex
         ex.getReport()
         handles.Enums.experiment_tags{i} = {};
-        fprintf('CORRUI ERROR: Probably you need to run corrui_setup to update the matlab path\n');
+        warning('off', 'backtrace')
+        warning('Probably you need to run jlab_setup to update the matlab path');
+        warning('on', 'backtrace')
         continue;
     end
     fprintf('\n');
