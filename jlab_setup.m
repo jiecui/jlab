@@ -20,6 +20,7 @@ function jlab_setup()
 % =========================================================================
 % remove current jLab, toolboxes and exp from path
 % =========================================================================
+disp('restoring default pathes...')
 restoredefaultpath
 new_jlab_folder = fileparts(mfilename('fullpath'));
 addpath(genpath(new_jlab_folder));
@@ -51,12 +52,14 @@ end % if
 paths = regexpi(path, exps_path, 'match');
 
 if ~isempty(paths)
-    disppaths(paths)
-    response = input('These folders will be removed from the path, continue? ([y]/n)','s');
-    if isempty(response) || lower(response) == 'y'
-        pp = cell2mat(paths);
-        rmpath(pp)
-    end % if
+    % disppaths(paths)
+    % response = input('These folders will be removed from the path, continue? ([y]/n)','s');
+    % if isempty(response) || lower(response) == 'y'
+    %     pp = cell2mat(paths);
+    %     rmpath(pp)
+    % end % if
+    pp = cell2mat(paths);
+    rmpath(pp)
 end
 
 % =========================================================================

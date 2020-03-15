@@ -631,7 +631,7 @@ classdef CorrGui
             % Example:
             %   curr_exp = CorrGui.ExperimentConstructor( experiment_tag );
             
-            if (isempty(strfind(experiment_tag,'_Avg')))
+            if (~contains(experiment_tag,'_Avg'))
                 experiment = eval(experiment_tag);
             else
                 experiment = eval(strrep(experiment_tag,'_Avg',''));
@@ -722,7 +722,7 @@ classdef CorrGui
         function config = config( command, config )
             
             if ( nargin == 0 )
-                load config.m
+                load('config.mat', 'config')
                 return
             end
             
