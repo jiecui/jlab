@@ -3371,10 +3371,12 @@ function [handles,levels,parentIdx,listing] = findjobj(container,varargin) %#ok<
 end  % FINDJOBJ
 
 % Fast implementation
+% TODO: remove JavaRame figure properties
 function jControl = findjobj_fast(hControl, jContainer)
     try jControl = hControl.Table; return, catch, end  % fast bail-out for old uitables
     try jControl = hControl.JavaFrame.getGUIDEView; return, catch, end  % bail-out for HG2 matlab.ui.container.Panel
     oldWarn = warning('off','MATLAB:HandleGraphics:ObsoletedProperty:JavaFrame');
+    warning('off')
     if nargin < 2 || isempty(jContainer)
         % Use a HG2 matlab.ui.container.Panel jContainer if the control's parent is a uipanel
         hParent = get(hControl,'Parent');
@@ -3385,6 +3387,7 @@ function jControl = findjobj_fast(hControl, jContainer)
         jf = get(hFig, 'JavaFrame');
         jContainer = jf.getFigurePanelContainer.getComponent(0);
     end
+    warning('on')
     warning(oldWarn);
     jControl = [];
     counter = 100;
