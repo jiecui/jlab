@@ -19,7 +19,7 @@ function add_dir = jlab_exp()
 % See also .
 
 % Copyright 2018-2019 Richard J. Cui. Created: Sat 05/19/2018  9:01:31.718 PM
-% $Revision: 0.4 $  $Date: Sat 03/14/2020 12:11:55.463 AM $
+% $Revision: 0.5 $  $Date: Tue 03/17/2020 10:46:40.905 PM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -27,6 +27,12 @@ function add_dir = jlab_exp()
 % Email: richard.cui@utoronto.ca
 
 add_dir = {};
+
+% elife_gamma_oscillation
+% -----------------------
+add_dir = cat(1, add_dir, fullfile(getuserdir, ['Documents/Richard',...
+    '/Projects/PostDocProjects/mayo/elife2019_data_analysis/analysis',...
+    '/code/jlab_exp']));
 
 % gfs_msacc
 % ---------
