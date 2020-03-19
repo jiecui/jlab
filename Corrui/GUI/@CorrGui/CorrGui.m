@@ -44,6 +44,7 @@ classdef CorrGui
                     filetype = filetype{1};     % convert to string
                 end
                 if isempty(filetype)
+                    newsession = [];
                     return
                 end
             else
