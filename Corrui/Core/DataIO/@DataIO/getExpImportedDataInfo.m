@@ -11,16 +11,15 @@ function imported_data = getExpImportedDataInfo(imported_data)
 %
 % See also .
 
-% Copyright 2013 Richard J. Cui. Created: 11/02/2013  4:26:27.119 PM
-% $Revision: 0.1 $  $Date: 11/02/2013  4:26:27.134 PM $
+% Copyright 2013-2020 Richard J. Cui. Created: 11/02/2013  4:26:27.119 PM
+% $Revision: 0.2 $  $Date: Wed 03/25/2020 12:06:03.605 AM $
 %
-% Visual Neuroscience Lab (Dr. Martinez-Conde)
-% Barrow Neurological Institute
-% 350 W Thomas Road
-% Phoenix AZ 85013, USA
+% 1026 Rocky Creek Dr NE
+% Rochester, MN 55906, USA
 %
-% Email: jie@neurocorrleate.com
+% Email: richard.cui@utoronto.ca
 
+% TODO: thie following parts should be implemented by different experiment
 % eye sample info
 % ----------------
 % construct enum if necessary
