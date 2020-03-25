@@ -39,6 +39,8 @@ end
 
 analysisList = curr_exp.getProcessAnalysisList();   % Note: at least one analysis fun should be provided
 if isempty(analysisList)
+    stage2Opt1 = [];
+    stage2Opt2 = [];    
     return
 end % if
 
