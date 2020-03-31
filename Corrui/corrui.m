@@ -17,6 +17,8 @@ function varargout = corrui(varargin)
 %      unrecognized property name or invalid value makes property application
 %      stop.  All inputs are passed to corrui_OpeningFcn via varargin.
 %
+%      CORRUI(jlab_exp)
+% 
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
@@ -27,7 +29,7 @@ function varargout = corrui(varargin)
 % Edit the above text to modify the response to help corrui
 
 % Last Modified by GUIDE v2.5 10-Aug-2016 10:02:54
-% Last modified by Richard J. Cui on Sat 03/14/2020 12:45:10.998 AM
+% Last modified by Richard J. Cui on Tue 03/31/2020  9:54:35.086 AM
 % e-mail: richard.jie.cui@gmail.com
 
 % Begin initialization code - DO NOT EDIT
@@ -70,6 +72,10 @@ function corrui_OpeningFcn(hObject, eventdata, handles, varargin)
 % ---------------------
 % -- Initializations --
 % ---------------------
+if nargin && iscell(varargin{1})
+    handles.jlab_exp = varargin{1};
+end % if
+
 if ispc == true
     handles = corrui_init_pc(hObject, eventdata, handles);
 elseif ismac == true
@@ -267,7 +273,7 @@ handles.Enums.experiment_tags           = {};
 dir_df = [fileparts(mfilename('fullpath')) [filesep 'Experiments']];
 d_df = dir(dir_df);
 % additional directories
-dir_add = jlab_exp;
+dir_add = handles.jlab_exp;
 if ~isempty(dir_add)
     d_add = struct([]);
     for k = 1:numel(dir_add)
@@ -293,10 +299,11 @@ for i=1:length(handles.Enums.experiment_tags)
         fprintf(['Setting up experiment: ' tag ' ... ']);
         experiment = CorrGui.ExperimentConstructor( tag );
         name = experiment.name;
-        % experiment.db = CorruiDB(handles.Current_Directory);
         experiment_avg = CorrGui.ExperimentConstructor( tag );
-        % experiment_avg.db = CorruiDB(handles.Current_Directory);
         experiment_avg.is_Avg = 1;
+        
+        % setup dependents of the experiments
+        % cprintf()
     catch ex
         ex.getReport()
         handles.Enums.experiment_tags{i} = {};
