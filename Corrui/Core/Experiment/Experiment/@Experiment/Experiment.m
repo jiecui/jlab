@@ -2,13 +2,13 @@ classdef Experiment < DataIO & ExpProcedure
 	% Class EXPERIMENT parent class of all experiment
     %       Basic properties of experiment system, data i/o, stimulus and trials
 
-	% Copyright 2014-2016 Richard J. Cui. Created: 05/30/2013  7:33:59.043 PM
-	% $Revision: 0.5 $  $Date: Thu 06/16/2016  5:24:49.367 PM $
+	% Copyright 2014-2020 Richard J. Cui. Created: 05/30/2013  7:33:59.043 PM
+	% $Revision: 0.6 $  $Date: Tue 03/31/2020  3:48:42.233 PM $
     %
-    % 3236 E Chandler Blvd Unit 2036
-    % Phoenix, AZ 85048, USA
+    % 1026 Rocky Creek Dr NE
+    % Rochester, MN 55906, USA
     %
-    % Email: richard.jie.cui@gmail.com
+    % Email: richard.cui@utoronto.ca
     
     % =================================================================
     % Properties, new experiments should change their values
@@ -44,7 +44,7 @@ classdef Experiment < DataIO & ExpProcedure
     end % properties
  
     properties
-        
+
     end % properties
     
     % =================================================================

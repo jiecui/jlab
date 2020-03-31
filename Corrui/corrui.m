@@ -296,14 +296,19 @@ for i=1:length(handles.Enums.experiment_tags)
     
     % test if there is any problem with the experiment
     try
-        fprintf(['Setting up experiment: ' tag ' ... ']);
+        % setup dependents of the experiments
+        fprintf('Setting up dependents of experiment: %s ...\n', tag)
+        dep_tag = [tag, 'Dependents']; % must be ExpDependents class
+        dependent = CorrGui.ExperimentConstructor(dep_tag);
+        dependent.setup;
+        
+        % setup the experiments
+        fprintf(['Setting up experiment: ' tag ' ...\n']);
         experiment = CorrGui.ExperimentConstructor( tag );
         name = experiment.name;
         experiment_avg = CorrGui.ExperimentConstructor( tag );
         experiment_avg.is_Avg = 1;
         
-        % setup dependents of the experiments
-        % cprintf()
     catch ex
         ex.getReport()
         handles.Enums.experiment_tags{i} = {};
@@ -312,7 +317,7 @@ for i=1:length(handles.Enums.experiment_tags)
         warning('on', 'backtrace')
         continue;
     end
-    fprintf('\n');
+    % fprintf('\n');
     
     handles.Enums.Internal_Text_List{end+1} = name;
     handles.Enums.Internal_Text_List_Avg{end+1} = [name ' Avg'];
