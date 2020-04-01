@@ -15,7 +15,8 @@ S.my_parameter     = { 43 }; %  default of 43, no limits.
 S.size_of_matrix   = { [3 2] '' [1 Inf] }; %  default of [4 12], allowed range:[1 Inf].
 S.Weight_Matrix = [0.3 0.4; 3.4 9.1; 10 0.4];
 S.User_name = {'' ''};
-P = StructDlg(S,'My title')
+P = StructDlg(S,'My title');
+disp(P)
 
 %%
 % Radio buttons: The definition includes a string that contains the options
@@ -25,7 +26,8 @@ P = StructDlg(S,'My title')
 clear S;
 S.colormap = {'hsv|{gray}|hot|bone|pink'};
 S.Sampling_rate = {'11500|22000|{44000}', 'Hz'};
-P = StructDlg(S,'Radio buttons')
+P = StructDlg(S,'Radio buttons');
+disp(P)
 
 %%
 % Pop-up menu: The definition includes a Cell-array of single strings. 
@@ -40,7 +42,8 @@ clear S;
 S.Sampling_rate = { {'12207' '24414' '48828' '{97656}'} , 'Hz'};
 S.Filter_type = { {'bartlett' '{chebwin}' 'hamming'} };
 S.use_filter = { {'0','{1}'} };
-P = StructDlg(S,'Popup menus and check box')
+P = StructDlg(S,'Popup menus and check box');
+disp(P)
          
 %%
 % File Name Dialogs: The definition includes a cell of one string that must start with 'uigetfile' or
@@ -51,6 +54,8 @@ P = StructDlg(S,'Popup menus and check box')
 clear S
 S.parameters_file = { {'uigetfile(''c:\temp\*.mat'')'} };
 P = StructDlg(S,'File name dialogs');
+disp(P)
+
 %%
 % Sub-Structure: S may contain substrucutres of the same format. The user will be able to push a
 %                     push-button that will call 'StructDlg' recursively for the sub-structure.
@@ -65,6 +70,8 @@ clear S
 S.Window_size       = { 512 'samples' [10 1000] };
 S.Overlap           = {'this.Window_size / 2' '' [0 Inf]}; %  Note that a non-empty limits indicator is needed in order to indicate that this is a numeric field.
 P = StructDlg(S,'Self reference fields');
+disp(P)
+
 %%
 % Notes: The value of the dependent field will be automatically updated when the values
 %                     of the referenced fields changes. The automatically changed value will blink twice
@@ -117,5 +124,5 @@ S.Contents    = { '{White}|Background Color|Transperent'}; % default is 'White'
 S.Use_alpha   = { {'{0}','1'} 'Use Alpha Channel' };       % default is NO
 S.Output_file = { {'uiputfile(''c:\Images\*.jpg'')'} };
 
-P = StructDlg(S,'New Image')
+P = StructDlg(S,'New Image');
 disp(P)
