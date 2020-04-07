@@ -3,8 +3,8 @@ function writeAnalysisFunctionFile(funname)
 % template for SPLab analysis function
 
 % Adapted from Matlab
-% Copyright 2015-2016 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 0.6 $  $Date:  Mon 12/30/2019 10:10:39.249 PM $
+% Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
+% $Revision: 0.7 $  $Date:  Tue 04/07/2020  6:21:16.815 PM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -58,10 +58,11 @@ fw.writeToFile(sprintf('%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('%% $ Revision: 0.1 $  $ Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% 1026 Rocky Creek Dr NE')
-fw.writeToFile('% Rochester, MN 55906, USA')
+fw.writeToFile('% Visual Neuroscience Lab (Dr. Martinez-Conde)')
+fw.writeToFile('% Mayo Clinic St. Mary Campus')
+fw.writeToFile('% Rochester, MN 55905, USA')
 fw.writeToFile('%')
-fw.writeToFile('% Email: richard.cui@utoronto.ca')
+fw.writeToFile('% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)')
 
 % options of the funtion
 fw.writeToFile('')

@@ -35,10 +35,11 @@ fw.writeToFile(sprintf('%% Created: %s;', datestr(now,'ddd mm/dd/yyyy HH:MM:SS.F
 fw.writeToFile(sprintf('%% Revision: 0.1  Date: %s',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% 1026 Rocky Creek Dr NE')
-fw.writeToFile('% Rochester, MN 55906, USA')
+fw.writeToFile('% Visual Neuroscience Lab (Dr. Martinez-Conde)')
+fw.writeToFile('% Mayo Clinic St. Mary Campus')
+fw.writeToFile('% Rochester, MN 55905, USA')
 fw.writeToFile('%')
-fw.writeToFile('% Email: richard.cui@utoronto.ca')
+fw.writeToFile('% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)')
 fw.writeToFile('')
 
 % fw.writeToFile('% [EOF]')
