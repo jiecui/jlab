@@ -53,7 +53,7 @@ fw.writeToFile(sprintf('%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('%% $ Revision: 0.1 $  $ Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% Visual Neuroscience Lab (Dr. Martinez-Conde)')
+fw.writeToFile('% Multimodel Neuroimaging Lab (Dr. Dora Hermes)')
 fw.writeToFile('% Mayo Clinic St. Mary Campus')
 fw.writeToFile('% Rochester, MN 55905, USA')
 fw.writeToFile('%')

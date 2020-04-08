@@ -3,7 +3,7 @@ function writeScriptFile(scriptname)
 
 % Adapted from Matlab
 % Copyright 2010-2017 Richard J. Cui. Created: 02/22/2010  4:06:34.491 PM
-% $Revision: 0.7 $  $Date: Mon 12/30/2019 10:10:39.249 PM $
+% $Revision: 0.8 $  $Date: Tue 04/07/2020 10:40:33.090 PM $
 %
 % 3236 E Chandler Blvd Unit 2036
 % Phoenix, AZ 85048, USA
@@ -35,7 +35,7 @@ fw.writeToFile(sprintf('%% Created: %s;', datestr(now,'ddd mm/dd/yyyy HH:MM:SS.F
 fw.writeToFile(sprintf('%% Revision: 0.1  Date: %s',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% Visual Neuroscience Lab (Dr. Martinez-Conde)')
+fw.writeToFile('% Multimodel Neuroimaging Lab (Dr. Dora Hermes)')
 fw.writeToFile('% Mayo Clinic St. Mary Campus')
 fw.writeToFile('% Rochester, MN 55905, USA')
 fw.writeToFile('%')

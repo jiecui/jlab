@@ -43,7 +43,7 @@ fw.writeToFile(sprintf('\t%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('\t%% $Revision: 0.1 $  $Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile(sprintf('\t%%'))
-fw.writeToFile(sprintf('\t%% Visual Neuroscience Lab (Dr. Martinez-Conde)'))
+fw.writeToFile(sprintf('\t%% Multimodel Neuroimaging Lab (Dr. Dora Hermes)'))
 fw.writeToFile(sprintf('\t%% Mayo Clinic St. Mary Campus'))
 fw.writeToFile(sprintf('\t%% Rochester, MN 55905, USA'))
 fw.writeToFile(sprintf('\t%%'))
