@@ -11,13 +11,14 @@ function newsessions = process( this, sessions, S)
 %
 % See also .
 
-% Copyright 2013-2016 Richard J. Cui. Created: Sun 11/03/2013  1:58:06.373 PM
-% $Revision: 0.7 $  $Date: Wed 08/10/2016  1:53:20.847 PM $
+% Copyright 2013-2020 Richard J. Cui. Created: Sun 11/03/2013  1:58:06.373 PM
+% $Revision: 0.8 $  $Date: Wed 04/08/2020 11:59:31.826 AM $
 %
-% 3236 E Chandler Blvd Unit 2036
-% Phoenix, AZ 85048, USA
+% Multimodel Neuroimaging Lab (Dr. Dora Hermes)
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: richard.jie.cui@gmail.com
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
 % check database
 if isempty(this.db)
@@ -100,9 +101,11 @@ function process_single( this, sname, S)
 % ---------------------
 % check info makeup
 info = this.db.Getsessvar(sname, 'info');
-if ~isfield(info.import, 'variables') == true
-    info.import.variables = {};
-    this.db.updateStruct(sname, 'info', info)
+if isfield(info, 'import')
+    if ~isfield(info.import, 'variables') == true
+        info.import.variables = {};
+        this.db.updateStruct(sname, 'info', info)
+    end % if
 end % if
 
 try
