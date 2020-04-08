@@ -12,22 +12,21 @@ function [mn, se] = Concatenate(  curr_exp, sessionlist, S )
 %
 % See also .
 
-% Copyright 2012-2015 Richard J. Cui. Created: 10/24/2012  9:09:33.593 AM
-% $Revision: 0.4 $  $Date: Sat 03/21/2015  4:28:58.306 PM $
+% Copyright 2012-2020 Richard J. Cui. Created: 10/24/2012  9:09:33.593 AM
+% $Revision: 0.5 $  $Date: Wed 04/08/2020  7:08:17.484 AM $
 %
-% Sensorimotor Research Group
-% School of Biological and Health System Engineering
-% Arizona State University
-% Tempe, AZ 25287, USA
+% Multimodel Neuroimaging Lab (Dr. Dora Hermes)
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: richard.jie.cui@gmail.com
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
 if ( nargin == 1 )
     switch( curr_exp)
         case 'get_options'
-            variables_agg = Aggregate.get_variable_list( curr_exp, 'Concatenate' );
+            variables_agg = ExperimentAggregate.get_variable_list( curr_exp, 'Concatenate' );
             
-            mn.select = { {'{0}', '1'} };
+            mn.select = { {'{0}', '1'}, 'Select variables' };
             options = [];
             for i=1:length( variables_agg )
                 options.(variables_agg{i}) = { {'0', '{1}'} };
@@ -35,14 +34,14 @@ if ( nargin == 1 )
             mn.options = options;
             
             if isempty(options)
-                mn = { {'{0}', '1'} };
+                mn = { {'{0}', '1'}, 'Concatenate variables' };
             end % if
             return
     end
 end
 
 % get the list of variables to concatenate
-concat_varlist = Aggregate.get_variable_list( curr_exp, 'Concatenate', S.Concatenate.options, S.Filters_To_Use );
+concat_varlist = ExperimentAggregate.get_variable_list( curr_exp, 'Concatenate', S.Concatenate.options, S.Filters_To_Use );
 
 % new_session_name    = S.Name_of_New_Aggregated_Session;
 concatenated_vars = [];

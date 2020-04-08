@@ -657,10 +657,11 @@ if ( ischar( sessionlist) == 1 )
             if ( ~isfield(dat, 'comment') )
                 dat.comment = '';
             end
+            comm = '';
             %             text = sprintf( 'Session: %s \nFs = %d Hz \nSessions: %s \nComment: %s' ,...
             %                 sessionlist, dat.samplerate, sessions , dat.comment);
             text = sprintf( 'Session: %s \nComment: %s' ,...
-                sessionlist, dat.comment);
+                curr_exp.SessName2UserSessName(sessionlist), dat.comment);
         end
         
         % refresh session description

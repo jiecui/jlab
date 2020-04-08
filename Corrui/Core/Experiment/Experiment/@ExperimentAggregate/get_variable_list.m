@@ -1,5 +1,5 @@
 function list = get_variable_list( curr_exp, type, agg_only_these_vars, filters_to_use )
-% GET_VARIABLE_LIST gets list of variables to be aggreagated
+% EXPERIMENTAGGREGATE.GET_VARIABLE_LIST gets list of variables to be aggreagated
 %
 % Syntax:
 %   list = get_variable_list( curr_exp, type, agg_only_these_vars, filters_to_use )
@@ -12,15 +12,14 @@ function list = get_variable_list( curr_exp, type, agg_only_these_vars, filters_
 %
 % See also .
 
-% Copyright 2012 Richard J. Cui. Created: 10/24/2012  9:25:40.196 AM
-% $Revision: 0.1 $  $Date: 10/24/2012  9:25:40.196 AM $
+% Copyright 2012-2020 Richard J. Cui. Created: 10/24/2012  9:25:40.196 AM
+% $Revision: 0.2 $  $Date: Wed 04/08/2020  7:08:17.484 AM $
 %
-% Visual Neuroscience Lab (Dr. Martinez-Conde)
-% Barrow Neurological Institute
-% 350 W Thomas Road
-% Phoenix AZ 85013, USA
+% Multimodel Neuroimaging Lab (Dr. Dora Hermes)
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: jie@neurocorrleate.com
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
 list = {};
 if ~exist('agg_only_these_vars', 'var')

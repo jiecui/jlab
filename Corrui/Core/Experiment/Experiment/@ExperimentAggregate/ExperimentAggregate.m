@@ -1,14 +1,14 @@
-classdef Aggregate < handle
-    % AGGREGATE functions for aggregating variables in different sessions
+classdef ExperimentAggregate < handle
+    % EXPERIMENTAGGREGATE functions for aggregating variables in different sessions
     
-    % Revised by Richard J. Cui.
-    % $Revision: 0.1 $  $Date: Fri 11/07/2014 11:09:04.541 PM $
+	% Copyright 2020 Richard J. Cui. Created: Wed 04/08/2020  7:08:17.484 AM
+    % $Revision: 0.1 $  $Date: Wed 04/08/2020  7:08:17.484 AM $
     %
-    % Barrow Neurological Institute
-    % 350 W Thomas Road
-    % Phoenix AZ 85013, USA
+    % Multimodel Neuroimaging Lab (Dr. Dora Hermes)
+    % Mayo Clinic St. Mary Campus
+    % Rochester, MN 55905, USA
     %
-    % Email: jie@neurocorrleate.com
+    % Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
     
     % basic functions
     % ---------------

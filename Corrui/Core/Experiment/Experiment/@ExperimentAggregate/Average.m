@@ -1,5 +1,5 @@
-function [mn se] = Average( curr_exp, sessionlist, S)
-% AVERAGE takes a list of variables, extracts the data from the open db,
+function [mn, se] = Average( curr_exp, sessionlist, S)
+% EXPERIMENTAGGREGATE.AVERAGE takes a list of variables, extracts the data from the open db,
 %       averages  and finds standard dev (error?) and returns structs with those,
 %       that could be fed back into the db as a new experiment
 %
@@ -14,19 +14,19 @@ function [mn se] = Average( curr_exp, sessionlist, S)
 %
 % See also .
 
-% Copyright 2012-2014 Richard J. Cui. Created: 10/24/2012  9:02:16.877 AM
-% $Revision: 0.2 $  $Date: Thu 11/27/2014 11:15:15.966 AM $
+% Copyright 2012-2020 Richard J. Cui. Created: 10/24/2012  9:02:16.877 AM
+% $Revision: 0.3 $  $Date: Wed 04/08/2020  7:08:17.484 AM $
 %
-% Barrow Neurological Institute
-% 350 W Thomas Road
-% Phoenix AZ 85013, USA
+% Multimodel Neuroimaging Lab (Dr. Dora Hermes)
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: jie@neurocorrleate.com
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
 if ( nargin == 1 )
     switch( curr_exp)
         case 'get_options'
-            variables_agg = Aggregate.get_variable_list( curr_exp, 'Average' );
+            variables_agg = ExperimentAggregate.get_variable_list( curr_exp, 'Average' );
             
             mn.select = { {'{0}', '1'} };
             options = [];
@@ -43,7 +43,7 @@ if ( nargin == 1 )
 end
 
 % get the list of variables to average
-varlist = EyeMovementAggregate.get_variable_list( curr_exp, 'Average', S.Average.options, S.Filters_To_Use );
+varlist = Experiment.get_variable_list( curr_exp, 'Average', S.Average.options, S.Filters_To_Use );
 
 new_session_name    = S.Name_of_New_Aggregated_Session;
 win_back_all        = curr_exp.db.getvar('window_backward', sessionlist);
@@ -63,7 +63,7 @@ raw_dat = [];
 for i=1:length(varlist)
     try
         % get an array with the data for all the sessions and the window offests, backward and forward
-        [arr wb wf] = curr_exp.db.makearray( sessionlist, varlist{i}, win_back_all, win_forwrd_all, samplerate_all );
+        [arr, wb, wf] = curr_exp.db.makearray( sessionlist, varlist{i}, win_back_all, win_forwrd_all, samplerate_all );
         if ( isempty( arr) )
             continue;
         else
