@@ -22,7 +22,7 @@ function varargout = corrui_variable_db_editor(varargin)
 
 % Edit the above text to modify the response to help corrui_variable_db_editor
 
-% Last Modified by RJC on Wed 07/20/2016  4:24:29.471 PM
+% Last Modified by RJC on Fri 04/10/2020  4:37:12.924 PM
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -58,6 +58,9 @@ handles.output = hObject;
 
 % GUI
 % ----
+% editor name
+hObject.Name = 'jLab - Variable Editor';
+
 % set scrolling in variable table
 jscrollpane = findjobj(handles.uitablevar);
 jtable = jscrollpane.getViewport.getView;
@@ -65,10 +68,11 @@ jtable.setSortable(true);		% or: set(jtable,'Sortable','on');
 jtable.setAutoResort(true);
 jtable.setMultiColumnSortable(true);
 jtable.setPreserveSelectionsAfterSorting(true);
+
 % fill the tables
 currpath = mfilename('fullpath');
 if ( exist([currpath '.mat'],'file') )
-    load([currpath '.mat']);
+    load([currpath '.mat'], 'data', 'descriptions');
     set(handles.uitablevar,'Data',data);
     handles.descriptions = descriptions;
 end

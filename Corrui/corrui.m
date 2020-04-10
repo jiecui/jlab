@@ -29,7 +29,7 @@ function varargout = corrui(varargin)
 % Edit the above text to modify the response to help corrui
 
 % Last Modified by GUIDE v2.5 10-Aug-2016 10:02:54
-% Last modified by Richard J. Cui on Tue 03/31/2020  9:54:35.086 AM
+% Last modified by Richard J. Cui on Fri 04/10/2020  4:37:12.924 PM
 % e-mail: richard.jie.cui@gmail.com
 
 % Begin initialization code - DO NOT EDIT
@@ -1586,6 +1586,9 @@ function mnuVarDesEditor_Callback(hObject, eventdata, handles)
 % hObject    handle to mnuVarDesEditor (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+% transfer curr_exp obj to the variable editor
+
 corrui_variable_db_editor
 
 
