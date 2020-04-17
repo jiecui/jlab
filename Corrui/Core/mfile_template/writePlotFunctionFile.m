@@ -3,7 +3,7 @@ function writePlotFunctionFile(funname)
 
 % Adapted from Matlab
 % Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 0.6 $  $Date: Tue 04/07/2020 10:40:33.090 PM $
+% $Revision: 0.7 $  $Date: Wed 04/15/2020 12:36:03.485 PM $
 %
 % 3236 E Chandler Blvd Unit 2036
 % Phoenix, AZ 85048, USA
@@ -54,7 +54,7 @@ fw.writeToFile(sprintf('%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('%% $ Revision: 0.1 $  $ Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% Multimodel Neuroimaging Lab (Dr. Dora Hermes)')
+fw.writeToFile('% Multimodal Neuroimaging Lab (Dr. Dora Hermes)')
 fw.writeToFile('% Mayo Clinic St. Mary Campus')
 fw.writeToFile('% Rochester, MN 55905, USA')
 fw.writeToFile('%')

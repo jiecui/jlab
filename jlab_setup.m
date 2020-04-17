@@ -10,7 +10,7 @@ function jlab_setup()
 % See also .
 
 % Copyright 2012-2020 Richard J. Cui. Created: Thu 11/08/2012  8:49:00.581 AM
-% $Revision: 1.8 $  $Date: Tue 03/31/2020  6:20:21.467 PM $
+% $Revision: 1.9 $  $Date: Fri 04/17/2020 10:27:52.589 AM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -44,18 +44,6 @@ elseif ~isempty(jlab_exp_path)
     exps_path = sprintf('[^%s]*(jLab|jlab|%s|%s)[^%s]*%s', ...
         pathsep, jlab_exp_path, pathsep, pathsep);
 end % if
-paths = regexpi(path, exps_path, 'match');
-
-if ~isempty(paths)
-    % disppaths(paths)
-    % response = input('These folders will be removed from the path, continue? ([y]/n)','s');
-    % if isempty(response) || lower(response) == 'y'
-    %     pp = cell2mat(paths);
-    %     rmpath(pp)
-    % end % if
-    pp = cell2mat(paths);
-    rmpath(pp)
-end
 
 % =========================================================================
 % add paths for jLab, toolbox and exp
