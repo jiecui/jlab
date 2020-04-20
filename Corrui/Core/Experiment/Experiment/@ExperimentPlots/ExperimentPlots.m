@@ -9,17 +9,26 @@ classdef ExperimentPlots < handle
 	%
 	% Email: richard.jie.cui@gmail.com
 
+    % =====================================================================
+    % properties
+    % =====================================================================
     properties 
         Options         % options for plots
         curr_exp        % object of current experiment
     end % properties
  
+    % =====================================================================
+    % constructor
+    % =====================================================================
     methods % the constructor
         function this = ExperimentPlots()
  
         end
     end % methods
     
+    % =====================================================================
+    % methods
+    % =====================================================================
     methods
 
     end % methods
