@@ -1,29 +1,49 @@
-function  newsessions = batch_operation( this, operation, tag_choise )
+function  newsessions = batch_operation(this, operation, varargin)
 % EXPERIMENT.BATCH_OPERATION porcesses batch operations
 %
 % Syntax:
+%   newsessions = batch_operation(this, operation)
+%   newsessions = batch_operation(__, tag_choice)
 %
 % Input(s):
+%   this            - [obj] Experiment object
+%   operation       - [cell struct] options of processing operations
+%   tag_choice      - [char] (opt) {'Current Exp', 'Specified in Batch'}.
+%                     'Current Exp'     : 'Tag' is the name the current 
+%                                        experiment (default)
+%                     'Specified in Batch'
+%                                       : 'Tage' is specified in batch
+%                                         operation
 %
 % Output(s):
-%
+%   newsessions     - [cell char] cell arrays of names of new sessions
+% 
 % Example:
 %
 % See also .
 
-% Copyright 2014 Richard J. Cui. Created: 04/28/2013  1:32:49.953 PM
-% $Revision: 0.3 $  $Date: Sun 04/20/2014  4:58:33.525 PM $
+% Copyright 2014-2020 Richard J. Cui. Created: 04/28/2013  1:32:49.953 PM
+% $Revision: 0.4 $  $Date: Tue 04/21/2020  4:17:15.868 PM $
 %
-% Visual Neuroscience Lab (Dr. Martinez-Conde)
-% Barrow Neurological Institute
-% 350 W Thomas Road
-% Phoenix AZ 85013, USA
+% Multimodal Neuroimaging Lab (Dr. Dora Hermes)
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: jie@neurocorrleate.com
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
-N = length(operation);
+% =========================================================================
+% parse inputs
+% =========================================================================
+q = parseInputs(this, operation, varargin{:});
+tag_choise = q.tag_choice;
 
-for i = 1:N
+% =========================================================================
+% main
+% =========================================================================
+% process operations one by one
+% -----------------------------
+n_opr = numel(operation); % number of operations
+for i = 1:n_opr
     % --------------------
     % check operation type
     % --------------------
@@ -72,7 +92,9 @@ for i = 1:N
             if ( isfield( operation{i}, 'Tag') )
                 current_tag_batch = operation{i}.Tag;
                 if ~strcmp(current_tag, current_tag_batch)
+                    warning('off', 'backtrace')
                     warning('Tag of current exp and that in batch file are not consistent!')
+                    warning('on', 'backtrace')
                 end % if
             end % if
         case 'Specified in Batch'
@@ -86,28 +108,27 @@ for i = 1:N
     % ++++++++++++++++++++++++++++
     % importing sessions / block
     % ++++++++++++++++++++++++++++
-    if isImport
+    if isImport == true
         datafiles = operation{i}.DataFiles;
         S = operation{i}.S;
-        newsessions = this.import( datafiles, S );
+        newsessions = this.import(datafiles, S);
     end
     
     % ++++++++++++++++++++++++++++++++++++++++++++++++++++
     % processing individual (or aggregated) sessions /
     % blocks
     % ++++++++++++++++++++++++++++++++++++++++++++++++++++
-    if isProcess
-        sessions = operation{i}.Sessions.Old;   
-        newsessions = operation{i}.Sessions.New;
+    if isProcess == true
         S = operation{i};
-        S.newsessions = newsessions;
-        newsessions = this.process( sessions, S );
+        sessions = S.Sessions.Old;   
+        S.newsessions = S.Sessions.New;
+        newsessions = this.process(sessions, S);
     end
     
     % +++++++++++++++++++++++++++++++++
     % combine blocks
     % +++++++++++++++++++++++++++++++++
-    if isCombine
+    if isCombine == true
         datablocks = operation{i}.Sessions.Old;
         newsessions = operation{i}.Sessions.New;
         S = operation{i};
@@ -118,17 +139,17 @@ for i = 1:N
     
     % aggregating sessions
     % ----------------------
-    if isAggregate
+    if isAggregate == true
         sessionlist = operation{i}.Sessions.Old;
         S =  operation{i}.Options;
-        CorrGui.Aggregate( current_tag , sessionlist, S, S.do_waitbar );
+        CorrGui.Aggregate( current_tag , sessionlist, S, S.do_waitbar ); % TODO
         
         newsessions = S.Name_of_New_Aggregated_Session;
     end
     
     % ploting sessions
     % -----------------
-    if isPlot
+    if isPlot == true
         sessionlist = operation{i}.Sessions.Old;
         S =  operation{i}.Options;
         CorrGui.Plot( current_tag , sessionlist, S );
@@ -138,10 +159,31 @@ for i = 1:N
 end
 
 % close pool if necessary
-if  matlabpool('size')
-    matlabpool('close')
+p = gcp('nocreate');
+if  isempty(p) == false
+    delete(p)
 end
 
 end % function batch_operation
+
+% =========================================================================
+% subroutines
+% =========================================================================
+function q = parseInputs(varargin)
+
+% defaults
+default_tc = 'Current Exp';
+
+% parse rules
+p = inputParser;
+p.addRequired('this', @isobject);
+p.addRequired('operation', @iscell);
+p.addOptional('tag_choice', default_tc, @ischar);
+
+% parse and return
+p.parse;
+q = p.Results;
+
+end % funciton
 
 % [EOF]

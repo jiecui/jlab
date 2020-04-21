@@ -3,7 +3,7 @@ classdef Experiment < DataIO & ExpProcedure
     %       Basic properties of experiment system, data i/o, stimulus and trials
 
 	% Copyright 2014-2020 Richard J. Cui. Created: 05/30/2013  7:33:59.043 PM
-	% $Revision: 0.6 $  $Date: Tue 03/31/2020  3:48:42.233 PM $
+	% $Revision: 0.7 $  $Date: Tue 04/21/2020  4:17:15.868 PM $
     %
     % 1026 Rocky Creek Dr NE
     % Rochester, MN 55906, USA
@@ -135,7 +135,7 @@ classdef Experiment < DataIO & ExpProcedure
         opt = getProcessStage1Options( this )
         opt = getProcessStage2Options( this )
         analysisList = getProcessAnalysisList( this )
-        newsessions = batch_operation( this, operation, tag_choise )
+        newsessions = batch_operation( this, operation, varargin )
 
         [imprted_data, stage0_data] = stage0process(this, sname, options)
         stage1_data = stage1process(this, sess_name, options)
