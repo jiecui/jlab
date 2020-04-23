@@ -30,13 +30,14 @@ function out = plot_bar( varargin )
 %
 % See also .
 
-% Copyright 2013-2016 Richard J. Cui. Created: Thu 11/07/2013 12:39:36.402 PM
-% $Revision: 0.8 $  $Date: Tue 11/01/2016  5:51:28.051 PM $
+% Copyright 2013-2020 Richard J. Cui. Created: Thu 11/07/2013 12:39:36.402 PM
+% $Revision: 0.9 $  $Date: Wed 04/22/2020 11:30:14.375 PM $
 %
-% 3236 E Chandler Blvd Unit 2036
-% Phoenix, AZ 85048, USA
+% Multimodal Neuroimaging Lab (Dr. Dora Hermes)
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: richard.jie.cui@gmail.com
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
 % -------------------------------------------------------------------------
 % get options
@@ -76,6 +77,10 @@ if ~isfield(p, 'fig') || isempty(p.fig)
 else
     out = p.fig;
 end
+
+if isempty(xleg)
+    xleg = num2cell(1:num_row);
+end % if
 
 % -------------------------------------------------------------------------
 % plots
@@ -117,7 +122,7 @@ for k = 1:num_cats
     n_k = length(d_k);
     avrg(k) = nanmean(d_k);
     estd(k) = nanstd(d_k);
-    esem(k) = estd(k) / sqrt(n_k); % ?
+    esem(k) = estd(k)/sqrt(n_k); % TODO: need check
 end % for
 
 % -------------------------------------------------------------------------
@@ -136,10 +141,12 @@ switch S.error_type
         udata = estd;
 end % switch
 switch S.error_dir
-    case 'Up'
-        ldata = zeros(1, num_cats);
-    case 'Down'
-        udata = zeros(1, num_cats);
+    case 'Outward'
+        ldata(avrg >= 0) = 0;
+        udata(avrg < 0)  = 0;
+    case 'Inward'
+        ldata(avrg < 0)  = 0;
+        udata(avrg >= 0) = 0;
 end % switch
 if S.show_error
     h_errbar.Visible = 'On';
@@ -237,7 +244,7 @@ if nargin >= 1
         p.addRequired('fig')
     end % if
     p.addRequired('data', @iscell)
-    p.addOptional('ylimit', [0 3], @(x)((isnumeric(x) && length(x) == 2) || isempty(x)))
+    p.addOptional('ylimit', [], @(x)((isnumeric(x) && length(x) == 2) || isempty(x)))
     p.addOptional('fig_title', 'Bar Plot', @ischar)
     p.addOptional('xlegends', {}, @iscell)
     p.addOptional('ylab', 'Y', @ischar)
@@ -260,6 +267,6 @@ bar_opts.bar_width      = {.8, 'Bar Width'};
 bar_opts.bar_layout     = {'{Grouped}|Stacked|Overlay', 'Bar Layout'};
 bar_opts.show_error     = {{'0', '{1}'}, 'Show Error Bar'};
 bar_opts.error_type     = { '{SEM}|STD', 'Error Type' };
-bar_opts.error_dir      = {'{Up}|Down|Both', 'Error Bar Direction'};
+bar_opts.error_dir      = {'{Outward}|Inward|Both', 'Error Bar Direction'};
 
 end
