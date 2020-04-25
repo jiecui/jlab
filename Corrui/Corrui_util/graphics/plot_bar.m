@@ -1,4 +1,4 @@
-function out = plot_bar( varargin )
+function fig = plot_bar( varargin )
 % PLOT_BAR plots bar charts of general data
 % 
 % Syntax:
@@ -18,7 +18,7 @@ function out = plot_bar( varargin )
 %   options     - (optional) structure with GUI options for the plot
 %
 % Output:
-%   out         - handles of figure objects created
+%   fig         - handles of figure objects created
 %
 % Examples:
 %   options = plot_mainsequence( 'get_options' )
@@ -31,7 +31,7 @@ function out = plot_bar( varargin )
 % See also .
 
 % Copyright 2013-2020 Richard J. Cui. Created: Thu 11/07/2013 12:39:36.402 PM
-% $Revision: 0.9 $  $Date: Wed 04/22/2020 11:30:14.375 PM $
+% $Revision: 1.0 $  $Date: Thu 04/23/2020 10:20:55.972 AM $
 %
 % Multimodal Neuroimaging Lab (Dr. Dora Hermes)
 % Mayo Clinic St. Mary Campus
@@ -53,6 +53,9 @@ if ( nargin == 1 )
             cprintf('SystemCommands', 'Unknown command\n')
             out = [];
     end
+    if nargout > 0
+        fig = out;
+    end % if
     return
 end
 
@@ -99,6 +102,12 @@ ylabel(out.hax, ylab);
 title(out.hax, figtit)
 
 % TODO horizontal or vertical bars
+
+% output
+% ------
+if nargout > 0
+    fig = out;
+end % if
 
 end
 
