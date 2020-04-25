@@ -1,14 +1,15 @@
 function writeAggregateFunctionFile(funname)
-% WRITEAGGREGATEFUNCTIONFILE uses a Filewriter object to write a function template for SPLCorrui aggregate function
+% WRITEAGGREGATEFUNCTIONFILE uses a Filewriter object to write a function template for jLAB aggregate function
 
 % Adapted from Matlab
 % Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 0.6 $  $Date: Wed 04/15/2020 12:36:03.485 PM $
+% $Revision: 0.7 $  $Date: Fri 04/24/2020 10:27:46.830 PM $
 %
-% 1026 Rocky Creek Dr NE
-% Rochester, MN 55906, USA
+% Multimodal Neuroimaging Lab (Dr. Dora Hermes)
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: richard.cui@utoronto.ca
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
 % ask user to provide the file and class names
 % ---------------------------------------------
@@ -30,7 +31,7 @@ fw = Filewriter(filename);
 % write template file
 % -------------------
 % syntax of function of analysis
-fun_syn = sprintf('[mn, se] = %s(curr_exp, sessionlist, S)', funname);
+fun_syn = sprintf('[mn, se] = %s(curr_tag, sessionlist, S)', funname);
 fw.writeToFile(['function ' fun_syn])
 
 % summary
@@ -66,7 +67,7 @@ fw.writeToFile('% Input options')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% specific options for the current process')
 fw.writeToFile('if nargin == 1')
-fw.writeToFile(sprintf('\tswitch( curr_exp )'))
+fw.writeToFile(sprintf('\tswitch( curr_tag )'))
 fw.writeToFile(sprintf('\t\tcase ''get_options'''))
 fw.writeToFile('')
 fw.writeToFile(sprintf('\t\t\t%% opt.select = { {''{0}'', ''1''} };\t%% select this or not'))
@@ -89,10 +90,13 @@ fw.writeToFile('')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% Main process')
 fw.writeToFile('% =========================================================================')
-fw.writeToFile('se = [];')
-fw.writeToFile('curr_agg = curr_exp.aggregateClass;')
+fw.writeToFile('if isobject(current_tag) == true')
+fw.writeToFile('    curr_exp = current_tag;')
+fw.writeToFile('end % if')
 fw.writeToFile('')
-fw.writeToFile('mn = AggSpect(curr_agg, curr_exp, sessionlist, S);')
+fw.writeToFile('se = [];')
+fw.writeToFile('')
+fw.writeToFile('mn = AggExample(curr_exp, sessionlist, S);')
 fw.writeToFile('')
 fw.writeToFile(sprintf('end %% function %s',funname))
 
@@ -101,7 +105,10 @@ fw.writeToFile('')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% Subroutines')
 fw.writeToFile('% =========================================================================')
-fw.writeToFile('function mn = AggSpect(curr_agg, curr_exp, sessionList, S)')
+fw.writeToFile('function mn = AggExample(curr_exp, sessionlist, S)')
+fw.writeToFile('')
+fw.writeToFile('this = curr_exp.aggregateClass;')
+fw.writeToFile('n_sess = length(sessionlist); % number of session')
 fw.writeToFile('')
 fw.writeToFile('% ----------------------------')
 fw.writeToFile('% copy')
@@ -116,7 +123,7 @@ fw.writeToFile('% concatenate')
 fw.writeToFile('% -------------------------')
 fw.writeToFile('% S.Concatenate = [];')
 fw.writeToFile('% S.Concatenate.options.example = true;')
-fw.writeToFile('% mn_concatenate = curr_agg.Concatenate(curr_exp, sessionList, S);')
+fw.writeToFile('% mn_concatenate = curr_agg.Concatenate(curr_exp, sessionlist, S);')
 fw.writeToFile('')
 fw.writeToFile('% -------------------------')
 fw.writeToFile('% Other data aggregate')
