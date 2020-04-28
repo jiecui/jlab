@@ -3,7 +3,7 @@ function writePlotFunctionFile(funname)
 
 % Adapted from Matlab
 % Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 0.7 $  $Date: Wed 04/15/2020 12:36:03.485 PM $
+% $Revision: 0.8 $  $Date: Tue 04/28/2020  1:25:04.185 PM $
 %
 % 3236 E Chandler Blvd Unit 2036
 % Phoenix, AZ 85048, USA
@@ -86,6 +86,7 @@ fw.writeToFile('')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% Get data')
 fw.writeToFile('% =========================================================================')
+fw.writeToFile('curr_exp = CorrGui.CheckTag(current_tag);')
 fw.writeToFile('% dat_var = { ''example_dat'' }')
 fw.writeToFile('% dat = CorruiDB.Getsessvars(sname, dat_var);')
 fw.writeToFile('% example_dat = dat.example_dat')

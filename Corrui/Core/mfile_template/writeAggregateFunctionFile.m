@@ -31,7 +31,7 @@ fw = Filewriter(filename);
 % write template file
 % -------------------
 % syntax of function of analysis
-fun_syn = sprintf('[mn, se] = %s(curr_tag, sessionlist, S)', funname);
+fun_syn = sprintf('[mn, se] = %s(current_tag, sessionlist, S)', funname);
 fw.writeToFile(['function ' fun_syn])
 
 % summary
@@ -67,7 +67,7 @@ fw.writeToFile('% Input options')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% specific options for the current process')
 fw.writeToFile('if nargin == 1')
-fw.writeToFile(sprintf('\tswitch( curr_tag )'))
+fw.writeToFile(sprintf('\tswitch( current_tag )'))
 fw.writeToFile(sprintf('\t\tcase ''get_options'''))
 fw.writeToFile('')
 fw.writeToFile(sprintf('\t\t\t%% opt.select = { {''{0}'', ''1''} };\t%% select this or not'))
