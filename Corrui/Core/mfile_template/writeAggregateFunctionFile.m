@@ -3,7 +3,7 @@ function writeAggregateFunctionFile(funname)
 
 % Adapted from Matlab
 % Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 0.7 $  $Date: Fri 04/24/2020 10:27:46.830 PM $
+% $Revision: 0.8 $  $Date: Mon 04/27/2020 10:28:43.107 PM $
 %
 % Multimodal Neuroimaging Lab (Dr. Dora Hermes)
 % Mayo Clinic St. Mary Campus
@@ -116,14 +116,14 @@ fw.writeToFile('% ----------------------------')
 fw.writeToFile('% S.Copy = [];')
 fw.writeToFile('% S.Copy.select = true;')
 fw.writeToFile('% S.Copy.options.example = true;')
-fw.writeToFile('% mn_copy = curr_agg.Copy(curr_exp, sessionlist, S);')
+fw.writeToFile('% mn_copy = this.Copy(curr_exp, sessionlist, S);')
 fw.writeToFile('')
 fw.writeToFile('% -------------------------')
 fw.writeToFile('% concatenate')
 fw.writeToFile('% -------------------------')
 fw.writeToFile('% S.Concatenate = [];')
 fw.writeToFile('% S.Concatenate.options.example = true;')
-fw.writeToFile('% mn_concatenate = curr_agg.Concatenate(curr_exp, sessionlist, S);')
+fw.writeToFile('% mn_concatenate = this.Concatenate(curr_exp, sessionlist, S);')
 fw.writeToFile('')
 fw.writeToFile('% -------------------------')
 fw.writeToFile('% Other data aggregate')
