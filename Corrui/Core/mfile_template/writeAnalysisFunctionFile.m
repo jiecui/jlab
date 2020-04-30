@@ -4,7 +4,7 @@ function writeAnalysisFunctionFile(funname)
 
 % Adapted from Matlab
 % Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 1.0 $  $Date: Wed 04/29/2020 11:33:43.544 PM $
+% $Revision: 1.1 $  $Date: Thu 04/30/2020 12:55:52.765 AM $
 %
 % Multimodal Neuroimaging Lab (Dr. Dora Hermes)
 % Mayo Clinic St. Mary Campus
@@ -70,6 +70,15 @@ fw.writeToFile('% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (
 % options of the funtion
 fw.writeToFile('')
 fw.writeToFile('% =========================================================================')
+fw.writeToFile('% parse inputs')
+fw.writeToFile('% =========================================================================')
+fw.writeToFile('q = parseInputs(current_tag, varargin{:});')
+fw.writeToFile('current_tag     = q.current_tag;')
+fw.writeToFile('sname           = q.sname;')
+fw.writeToFile('S               = q.S;')
+fw.writeToFile('dat             = q.dat;')
+fw.writeToFile('')
+fw.writeToFile('% =========================================================================')
 fw.writeToFile('% Input parameters and options')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% specific options for the current process')
@@ -125,6 +134,23 @@ fw.writeToFile('')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% Subroutines')
 fw.writeToFile('% =========================================================================')
+fw.writeToFile('function q = parseInputs(varargin)')
+fw.writeToFile('')
+fw.writeToFile('%% default')
+fw.writeToFile('default_sn  = '''';')
+fw.writeToFile('default_S   = [];')
+fw.writeToFile('default_dat = [];')
+fw.writeToFile('%% parse rules')
+fw.writeToFile('p = inputParser;')
+fw.writeToFile('p.addRequired(''current_tag'', @(x) ischar(x) || isobject(x));')
+fw.writeToFile('p.addOptional(''sname'', default_sn, @(x) isempty(x) || ischar(x));')
+fw.writeToFile('p.addOptional(''S'', default_S, @(x) isstruct(x) || isempty(x));')
+fw.writeToFile('p.addOptional(''dat'', default_dat, @(x) isstruct(x) || isempty(x));')
+fw.writeToFile('%% parse and return')
+fw.writeToFile('p.parse(varargin{:});')
+fw.writeToFile('q = p.Results;')
+fw.writeToFile('')
+fw.writeToFile('end % function parseInputs')
 
 fw.writeToFile('')
 fw.writeToFile('% [EOF]')
