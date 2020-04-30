@@ -4,7 +4,7 @@ function writeAnalysisFunctionFile(funname)
 
 % Adapted from Matlab
 % Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 0.9 $  $Date:  Thu 04/16/2020  1:07:54.228 AM $
+% $Revision: 1.0 $  $Date: Wed 04/29/2020 11:33:43.544 PM $
 %
 % Multimodal Neuroimaging Lab (Dr. Dora Hermes)
 % Mayo Clinic St. Mary Campus
@@ -30,7 +30,7 @@ filename = [funname '.m'];
 fw = Filewriter(filename);
 
 % syntax of function of analysis
-fun_syn = sprintf('result_dat = %s(current_exp, varargin)', funname);
+fun_syn = sprintf('result_dat = %s(current_tag, varargin)', funname);
 fw.writeToFile(['function ' fun_syn])
 
 % write template file
@@ -39,7 +39,7 @@ fw.writeToFile(['function ' fun_syn])
 fw.writeToFile(sprintf('%% %s.%s (summary)',upper(funclassname), upper(funname)))
 fw.writeToFile('%')
 fw.writeToFile('% Syntax:')
-fw.writeToFile(sprintf('%%   result_dat = %s(current_exp)', funname))
+fw.writeToFile(sprintf('%%   result_dat = %s(current_tag)', funname))
 fw.writeToFile(sprintf('%%   result_dat = %s(__, sname, S, dat)', funname))
 fw.writeToFile('%')
 fw.writeToFile('% Input(s):')
@@ -73,7 +73,7 @@ fw.writeToFile('% ==============================================================
 fw.writeToFile('% Input parameters and options')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% specific options for the current process')
-fw.writeToFile('if strcmpi(current_exp,''get_options'')')
+fw.writeToFile('if strcmpi(current_tag,''get_options'')')
 fw.writeToFile(sprintf('\t%% opt.example = {2, ''AR order'', [1 Inf]};'))
 fw.writeToFile(sprintf('\topt = [];'))
 fw.writeToFile(sprintf('\tresult_dat = opt;'))
@@ -87,7 +87,7 @@ fw.writeToFile('% ==============================================================
 fw.writeToFile('% Load data need for analysis')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% specific data for the current process')
-fw.writeToFile('if strcmpi(current_exp,''get_big_vars_to_load'')')
+fw.writeToFile('if strcmpi(current_tag,''get_big_vars_to_load'')')
 fw.writeToFile(sprintf('\t%% result_dat = { ''example_dat'' };'))
 fw.writeToFile(sprintf('\tresult_dat = { };'))
 fw.writeToFile('')
@@ -110,6 +110,7 @@ fw.writeToFile('')
 fw.writeToFile('% =========================================================================')
 fw.writeToFile('% Main process')
 fw.writeToFile('% =========================================================================')
+fw.writeToFile('curr_exp = CorrGui.CheckTag(current_tag);')
 
 % oupput
 fw.writeToFile('')
