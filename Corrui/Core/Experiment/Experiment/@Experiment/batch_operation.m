@@ -23,7 +23,7 @@ function  newsessions = batch_operation(this, operation, varargin)
 % See also .
 
 % Copyright 2014-2020 Richard J. Cui. Created: 04/28/2013  1:32:49.953 PM
-% $Revision: 0.4 $  $Date: Tue 04/21/2020  4:17:15.868 PM $
+% $Revision: 0.5 $  $Date: Tue 05/05/2020 10:09:30.709 PM $
 %
 % Multimodal Neuroimaging Lab (Dr. Dora Hermes)
 % Mayo Clinic St. Mary Campus
@@ -137,8 +137,9 @@ for i = 1:n_opr
         newsessions = this.blocks2session(datablocks, S, S.do_waitbar);
     end % if
     
+    % +++++++++++++++++++++
     % aggregating sessions
-    % ----------------------
+    % +++++++++++++++++++++
     if isAggregate == true
         sessionlist = operation{i}.Sessions.Old;
         S =  operation{i}.Options;
@@ -147,8 +148,9 @@ for i = 1:n_opr
         newsessions = S.Name_of_New_Aggregated_Session;
     end
     
+    % +++++++++++++++++++++
     % ploting sessions
-    % -----------------
+    % +++++++++++++++++++++
     if isPlot == true
         sessionlist = operation{i}.Sessions.Old;
         S =  operation{i}.Options;
