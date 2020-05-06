@@ -692,7 +692,8 @@ classdef CorrGui
             cd(pathname);
             % request the file
             S.tag_choise = {'{Current Exp}|Specified in Batch', 'Tag choise'};
-            S.batch_func = { {'uigetfile(''*.m'', ''Chose the file to import'''} , 'Batch function'};
+            S.batch_func = { {'uigetfile(''*.m'', ''Chose the file to import'')'} , 'Batch function'};
+            % S.batch_func = {{sprintf('uigetfile(''%s'',''%s'')','*.m','Choose the file to import')},'Batch function'};
             P = StructDlg(S, 'Select batch function');
             % [filename, pathname] = uigetfile('*.m', 'Chose the file to import');
             if isempty(P)

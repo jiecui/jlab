@@ -140,7 +140,7 @@ function [P, units] = StructDlg(struct_def, title, dflt, fig_pos, visible, prese
 % This code is provided "as is". Enjoy and feel free to modify it.
 % Needless to say, the correctness of the code is not guarantied.
 
-% Last revised by Richard J. Cui (richard.jie.cui@gmail.com) on Mon 07/11/2016  1:07:12.164 PM
+% Last revised by Richard J. Cui (richard.cui@utoronto.ca) on Wed 05/06/2020 12:49:02.367 PM
 % AF 1/10/2005: Fixed a bug that crashed StructDlg when substructure were used.
 % AF 1/10/2005: Allow for auto-updates even when the referenced field is not an edit UI
 
@@ -346,7 +346,7 @@ elseif ischar(struct_def) % (isstr(struct_def))
                 ud    = get(gcbf,'UserData');
                 set_fields_ui(ud.orig_def,gcbf,ud,[],args,1);
                 
-            case {'ok', char(15), char(10), char(13)}
+            case {'ok', char(15), newline, char(13)}
                 ud    = get(gcbf,'UserData');
                 if (isempty(ud.error))
                     uiresume(gcbf);
@@ -499,7 +499,7 @@ catch ME
     tooltipstr = ['sub-structure info can not be displayed. ' ME.message];
 end
 
-tooltipstr = sprintf('%s', [tooltipstr repmat(char(10),size(tooltipstr,1),1)]');
+tooltipstr = sprintf('%s', [tooltipstr repmat(newline,size(tooltipstr,1),1)]');
 
 end % function
 
@@ -592,9 +592,9 @@ for i = 1:length(fnames)
         % Special requests
         if ((length(val) == 1) && ischar(val{1}))
             % if (~isempty(strmatch('uigetfile',val{1})) || ...
-            %     ~isempty(strmatch('uiputfile',val{1})) || ...
-            %     ~isempty(strmatch('uigetdir',val{1})) )
-            if  sum(strcmp({'uigetfile', 'uiputfile', 'uigetdir'}, val{1})) > 0           
+            %         ~isempty(strmatch('uiputfile',val{1})) || ...
+            %         ~isempty(strmatch('uigetdir',val{1})) )
+            if ~isempty(regexp(val{1},'(uigetfile|uiputfile|uigetdir)','once'))
                 ud = reset_getfile_field(h_fig,h,fnames{i},val,lbl_pos,ud,dflt_val);
             end
             
@@ -814,7 +814,7 @@ try
     end
 catch ME
     iserror = 1;
-    str     = strrep(ME.message, char(10),': ');
+    str     = strrep(ME.message, newline,': ');
 end
 if (iserror)
     % ud.error = setfield(ud.error,f,1);
@@ -1228,7 +1228,7 @@ end % function
 % Implemenation of recursive call (for sub-structures)
 %------------------------------------------------------
 function ud = reset_sub_struct_field(h_fig,h,f,val,lbl_pos,ud,dflt_val,units)
-if (isfield(ud.vals,f));
+if (isfield(ud.vals,f))
     % [sub_vals,sub_units] = StructDlg(val,'',getfield(ud.vals,f),[],'off');
     [sub_vals,sub_units] = StructDlg(val,'', ud.vals.(f),[],'off');
 else
@@ -1350,12 +1350,12 @@ switch (get(hgcbo,'Style'))
                 if (isempty(filter_spec))
                     filter_spec = '*.*';
                 end
-                if (filter_spec(1) ~= '{' && filter_spec(1) ~= '''')
-                    filter_spec = ['''' filter_spec ''''];
-                end
-                if (~isempty(extra_args))
-                    extra_args = [',' extra_args];
-                end
+                % if (filter_spec(1) ~= '{' && filter_spec(1) ~= '''')
+                %     filter_spec = ['''' filter_spec ''''];
+                % end
+                % if (~isempty(extra_args))
+                %     extra_args = [',' extra_args];
+                % end
                 
                 pushudCmd = str2func(push_ud.cmd);
                 if (strcmp(push_ud.cmd,'uigetdir'))
@@ -1368,7 +1368,7 @@ switch (get(hgcbo,'Style'))
                 end
                 return_val = '';
                 str = '';
-                if (~isempty(fname) && (iscell(fname) || fname ~= 0)) 
+                if (~isempty(fname) && (iscell(fname) || all(fname ~= 0))) 
                     if (ischar(fname)) % isstr(fname)
                         str = [pname fname];
                         return_val = str;
