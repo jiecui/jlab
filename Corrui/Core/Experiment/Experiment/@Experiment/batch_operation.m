@@ -23,7 +23,7 @@ function  newsessions = batch_operation(this, operation, varargin)
 % See also .
 
 % Copyright 2014-2020 Richard J. Cui. Created: 04/28/2013  1:32:49.953 PM
-% $Revision: 0.5 $  $Date: Tue 05/05/2020 10:09:30.709 PM $
+% $Revision: 0.6 $  $Date: Wed 05/06/2020  9:53:23.151 AM $
 %
 % Multimodal Neuroimaging Lab (Dr. Dora Hermes)
 % Mayo Clinic St. Mary Campus
@@ -183,7 +183,7 @@ p.addRequired('operation', @iscell);
 p.addOptional('tag_choice', default_tc, @ischar);
 
 % parse and return
-p.parse;
+p.parse(varargin{:});
 q = p.Results;
 
 end % funciton
