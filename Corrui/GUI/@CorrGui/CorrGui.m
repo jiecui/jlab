@@ -2,13 +2,14 @@ classdef CorrGui
     % CORRGUI Class of GUI process
     %   Data and functions for GUI
     
-    % Copyright 2013-2016 Richard J. Cui. Created: 04/28/2013  5:40:44.231 PM
-    % $Revision: 1.2 $  $Date: Thu 11/03/2016  3:12:48.898 PM $
+    % Copyright 2013-2020 Richard J. Cui. Created: 04/28/2013  5:40:44.231 PM
+    % $Revision: 1.3 $  $Date: Wed 05/06/2020 12:49:02.367 PM $
     %
-    % 3236 E Chandler Blvd Unit 2036
-    % Phoenix, AZ 85048, USA
+    % Multimodal Neuroimaging Lab (Dr. Dora Hermes)
+    % Mayo Clinic St. Mary Campus
+    % Rochester, MN 55905, USA
     %
-    % Email: richard.jie.cui@gmail.com
+    % Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
     
     methods (Static)
                 
