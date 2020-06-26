@@ -3,12 +3,13 @@ function writeScriptFile(scriptname)
 
 % Adapted from Matlab
 % Copyright 2010-2020 Richard J. Cui. Created: 02/22/2010  4:06:34.491 PM
-% $Revision: 0.9 $  $Date: Wed 04/15/2020 12:36:03.485 PM $
+% $Revision: 1.0 $  $Date: Fri 06/26/2020 12:21:11.016 PM $
 %
-% 3236 E Chandler Blvd Unit 2036
-% Phoenix, AZ 85048, USA
+% Multimodal Neuroimaging Lab
+% Mayo Clinic St. Mary Campus
+% Rochester, MN 55905, USA
 %
-% Email: richard.cui@utoronto.ca
+% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
 
 % ask user to provide file name
 if nargin < 1
@@ -35,7 +36,7 @@ fw.writeToFile(sprintf('%% Created: %s;', datestr(now,'ddd mm/dd/yyyy HH:MM:SS.F
 fw.writeToFile(sprintf('%% Revision: 0.1  Date: %s',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% Multimodal Neuroimaging Lab (Dr. Dora Hermes)')
+fw.writeToFile('% Multimodal Neuroimaging Lab')
 fw.writeToFile('% Mayo Clinic St. Mary Campus')
 fw.writeToFile('% Rochester, MN 55905, USA')
 fw.writeToFile('%')
