@@ -19,7 +19,7 @@ function add_dir = jlab_exp()
 % See also .
 
 % Copyright 2018-2019 Richard J. Cui. Created: Sat 05/19/2018  9:01:31.718 PM
-% $Revision: 0.5 $  $Date: Tue 03/17/2020 10:46:40.905 PM $
+% $Revision: 0.6 $  $Date: Wed 08/12/2020  8:33:40.683 PM $
 %
 % 1026 Rocky Creek Dr NE
 % Rochester, MN 55906, USA
@@ -30,16 +30,15 @@ add_dir = {};
 
 % elife_gamma_oscillation
 % -----------------------
-add_dir = cat(1, add_dir, fullfile(getuserdir, ['/Documents/Richard'...
-    '/mayo_r5205050/Projects/PostDocProjects/mayo/gamma_and_epilepsy'...
-    '/analysis/code/jlab_exp']));
+add_dir = cat(1, add_dir, fullfile(getuserdir, ['/Documents/Richard/'...
+    'Projects/PostDocProjects/mayo/gamma_neural_dynamics/analysis/code'...
+    '/jlab_exp']));
 
 % gfs_msacc
 % ---------
 % need eye_movement_analysis external toolbox
-add_dir = cat(1, add_dir, fullfile(getuserdir, ['/Documents/Richard'...
-    '/Projects/PostDocProjects/mayo/gamma_and_epilepsy/analysis/code'...
-    '/jlab_exp']));
+add_dir = cat(1, add_dir, fullfile(getuserdir, ['/Documents/Richard/'...
+    'Projects/other_projects/gfs_msacc/Analysis/codes/jlab_exp']));
 
 % mSaccade and contrast perception
 % --------------------------------
