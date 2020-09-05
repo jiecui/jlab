@@ -4,13 +4,13 @@ function writeAnalysisFunctionFile(funname)
 
 % Adapted from Matlab
 % Copyright 2015-2020 Richard J. Cui. Created: Mon 02/09/2015 10:11:40.240 PM
-% $Revision: 1.2 $  $Date: Thu 06/25/2020 12:14:15.163 PM $
+% $Revision: 1.3 $  $Date: Sat 09/05/2020  1:57:38.934 PM $
 %
-% Multimodal Neuroimaging Lab
-% Mayo Clinic St. Mary Campus
-% Rochester, MN 55905, USA
+% Rocky Creek Dr. NE
+% Rochester, MN 55906
+% USA
 %
-% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
+% Email: richard.cui@utoronto.ca
 
 % ask user to provide the file and class names
 % ---------------------------------------------
@@ -61,11 +61,10 @@ fw.writeToFile(sprintf('%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('%% $ Revision: 0.1 $  $ Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% Multimodal Neuroimaging Lab')
-fw.writeToFile('% Mayo Clinic St. Mary Campus')
-fw.writeToFile('% Rochester, MN 55905, USA')
+fw.writeToFile('% Rocky Creek Dr. NE')
+fw.writeToFile('% Rochester, MN 55906, USA')
 fw.writeToFile('%')
-fw.writeToFile('% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)')
+fw.writeToFile('% Email: richard.cui@utoronto.ca')
 
 % options of the funtion
 fw.writeToFile('')

@@ -3,13 +3,13 @@ function writeScriptFile(scriptname)
 
 % Adapted from Matlab
 % Copyright 2010-2020 Richard J. Cui. Created: 02/22/2010  4:06:34.491 PM
-% $Revision: 1.0 $  $Date: Fri 06/26/2020 12:21:11.016 PM $
+% $Revision: 1.1 $  $Date: Sat 09/05/2020  1:57:38.934 PM $
 %
-% Multimodal Neuroimaging Lab
-% Mayo Clinic St. Mary Campus
-% Rochester, MN 55905, USA
+% Rocky Creek Dr. NE
+% Rochester, MN 55906
+% USA
 %
-% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)
+% Email: richard.cui@utoronto.ca
 
 % ask user to provide file name
 if nargin < 1
@@ -36,11 +36,10 @@ fw.writeToFile(sprintf('%% Created: %s;', datestr(now,'ddd mm/dd/yyyy HH:MM:SS.F
 fw.writeToFile(sprintf('%% Revision: 0.1  Date: %s',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile('%')
-fw.writeToFile('% Multimodal Neuroimaging Lab')
-fw.writeToFile('% Mayo Clinic St. Mary Campus')
-fw.writeToFile('% Rochester, MN 55905, USA')
+fw.writeToFile('% Rocky Creek Dr. NE')
+fw.writeToFile('% Rochester, MN 55906, USA')
 fw.writeToFile('%')
-fw.writeToFile('% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)')
+fw.writeToFile('% Email: richard.cui@utoronto.ca')
 fw.writeToFile('')
 
 % fw.writeToFile('% [EOF]')

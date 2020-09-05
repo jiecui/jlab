@@ -3,9 +3,9 @@ function writeClassFile(classname,superclass)
 
 % Adapted from Matlab
 % Copyright 2014-2020 Richard J. Cui. Created: Sun 11/16/2014 10:45:20.718 AM
-% $Revision: 0.8 $  $Date: Wed 04/15/2020 12:36:03.485 PM $
+% $Revision: 0.9 $  $Date: Sat 09/05/2020  1:57:38.934 PM $
 %
-% 1026 Rocky Creek Dr NE
+% Rocky Creek Dr NE
 % Rochester, MN 55906, USA
 %
 % Email: richard.cui@utoronto.ca
@@ -43,11 +43,10 @@ fw.writeToFile(sprintf('\t%% Copyright %s Richard J. Cui. Created: %s',...
 fw.writeToFile(sprintf('\t%% $Revision: 0.1 $  $Date: %s $',...
     datestr(now,'ddd mm/dd/yyyy HH:MM:SS.FFF AM')))
 fw.writeToFile(sprintf('\t%%'))
-fw.writeToFile(sprintf('\t%% Multimodal Neuroimaging Lab (Dr. Dora Hermes)'))
-fw.writeToFile(sprintf('\t%% Mayo Clinic St. Mary Campus'))
-fw.writeToFile(sprintf('\t%% Rochester, MN 55905, USA'))
+fw.writeToFile(sprintf('\t%% Rocky Creek Dr. NE'))
+fw.writeToFile(sprintf('\t%% Rochester, MN 55906, USA'))
 fw.writeToFile(sprintf('\t%%'))
-fw.writeToFile(sprintf('\t%% Email: richard.cui@utoronto.ca (permanent), Cui.Jie@mayo.edu (official)'))
+fw.writeToFile(sprintf('\t%% Email: richard.cui@utoronto.ca'))
 fw.writeToFile('')
 
 % class body
