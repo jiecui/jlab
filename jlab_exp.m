@@ -29,7 +29,7 @@ function add_dir = jlab_exp()
 add_dir = {};
 
 % elife_gamma_oscillation
-% -----------------------
+% -----------------------`
 add_dir = cat(1, add_dir, fullfile(getuserdir, ['/Documents/Richard/'...
     'Projects/PostDocProjects/mayo/gamma_neural_dynamics/analysis/code'...
     '/jlab_exp']));
