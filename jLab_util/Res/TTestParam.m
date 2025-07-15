@@ -77,11 +77,11 @@ function [pr,t,df,bonf] = tt2(m,s,n,tail,alpha)
       end;
       if (isfinite(t(i,j)))
         if (tail>0)
-          pr(i,j) = 1-tcdf(t(i,j),df(i,j));        % Right-tailed test
+          pr(i,j) = 1-jlab_tcdf(t(i,j),df(i,j));        % Right-tailed test
         elseif (tail<0)
-          pr(i,j) = tcdf(t(i,j),df(i,j));          % Left-tailed test
+          pr(i,j) = jlab_tcdf(t(i,j),df(i,j));          % Left-tailed test
         else
-          pr(i,j) = 2*tcdf(-abs(t(i,j)),df(i,j));  % Two-tailed test
+          pr(i,j) = 2*jlab_tcdf(-abs(t(i,j)),df(i,j));  % Two-tailed test
         end;
       else
         pr(i,j) = NaN;

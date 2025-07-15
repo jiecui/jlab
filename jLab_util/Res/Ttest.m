@@ -77,11 +77,11 @@ function [t,pr,df,signif,pairs] = ttest(x,g,tail,alpha)
   end;
 
   if (tail==0)
-    pr = 2*tcdf(-abs(t),df);
+    pr = 2*jlab_tcdf(-abs(t),df);
   elseif (tail>0)
-    pr = 1-tcdf(t,df);
+    pr = 1-jlab_tcdf(t,df);
   else
-    pr = tcdf(t,df);
+    pr = jlab_tcdf(t,df);
   end;
 
   if (k==2)

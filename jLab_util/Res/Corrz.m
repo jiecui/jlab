@@ -113,7 +113,7 @@ function [Z,stderr,prob] = corrz(R,N,adjust)
 
     if (get_prob)
       ts = Z ./ stderr;               % Test statistic
-      prob = 2*tcdf(-abs(ts),df);     % 2-tailed probabilities
+      prob = 2*jlab_tcdf(-abs(ts),df);     % 2-tailed probabilities
     end;
   end;
 

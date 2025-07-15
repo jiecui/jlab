@@ -69,11 +69,11 @@ function [t,pr,df] = TTestOne(X,mu0,tail,W)
     t(ik) = (m-mu0(ik))/sqrt(v/n);
     switch (tail(ik))
       case -1,
-        pr = tcdf(t,df);
+        pr = jlab_tcdf(t,df);
       case 0,
-        pr = 2*(1-tcdf(abs(t),df));
+        pr = 2*(1-jlab_tcdf(abs(t),df));
       case 1,
-        pr = 1-tcdf(t,df);
+        pr = 1-jlab_tcdf(t,df);
     end;
   end;
   

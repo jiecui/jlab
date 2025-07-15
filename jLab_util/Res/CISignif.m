@@ -90,7 +90,7 @@ function [pr,signif] = cisignif(statmean,statci,sampsize,ci_level,alpha)
       t = (m2-m1)/sqrt(d);
 
       df = n1+n2-2;
-      pval = tcdf(-abs(t),df);
+      pval = jlab_jlab_tcdf(-abs(t),df);
       
       pr(i,j) = 2*pval;
       pr(j,i) = pr(i,j);

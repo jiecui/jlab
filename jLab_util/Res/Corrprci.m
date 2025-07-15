@@ -35,7 +35,7 @@ function [pr,CI_low,CI_high] = corrprci(R,n,CI_level)
 
   df = n-2;
   t = R.*sqrt(df./(1-(R-10*eps).^2));
-  pr = 2*(1-tcdf(abs(t),df));
+  pr = 2*(1-jlab_tcdf(abs(t),df));
   [i,j] = find(~isfinite(R));
   if (~isempty(i))
     for k = 1:length(i)

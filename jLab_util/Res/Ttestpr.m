@@ -104,11 +104,11 @@ function [meandiff,pr,t,df,r,rpr,b] = ttestpr(T,C,dir,wts,r_alpha,doplot)
   t = meandiff/sqrt(var(diff)/n);
 
   if (dir>eps)                            % Right-tailed
-    pr = 1-tcdf(t,df);
+    pr = 1-jlab_tcdf(t,df);
   elseif (dir<-eps)                       % Left-tailed
-    pr = tcdf(t,df);
+    pr = jlab_tcdf(t,df);
   else                                    % Two-tailed
-    pr = 2*(1-tcdf(abs(t),df));
+    pr = 2*(1-jlab_tcdf(abs(t),df));
   end;
 
   if (doplot & use_covar)
