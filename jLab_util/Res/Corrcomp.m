@@ -61,7 +61,7 @@ function [pr,signif,R1,R2] = corrcomp(X1,X2,multcomp,alpha)
       m1 = Z1(i,j);
       m2 = Z2(i,j);
       t = abs(m2-m1)./sqrt((((n1-1).*v1+(n2-1).*v2)./(n1+n2-2)).*((n1+n2)./(n1.*n2)));
-      pr(i,j) = 1-tcdf(t,df);
+      pr(i,j) = 1-jlab_tcdf(t,df);
     end;
   end;
 

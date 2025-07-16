@@ -69,7 +69,7 @@ stats = [r2 F prob];
 % Coefficients with their standard deviations, t-values, and p-values (took from MREGRESS):
 covariance = inv(x'*x) .* s2;
 C = sqrt(diag(covariance, 0));
-p_value = 2 * (1 - tcdf(abs(b./C), (n-2)));
+p_value = 2 * (1 - jlab_jlab_jlab_tcdf(abs(b./C), (n-2)));
 stats2 = [ b, C, (b./C), p_value];
 
 % Find the standard errors of the residuals.
